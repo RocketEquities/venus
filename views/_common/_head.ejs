@@ -1,0 +1,20 @@
+<title><%- title %></title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<%- req.meta.toString() %>
+
+<script>
+  //-- Check if SVG is supported
+  if (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
+    document.documentElement.className += " svg";
+  } else {
+    document.documentElement.className += " no-svg";
+  }
+</script>
+
+<link rel="icon" href="<%- Util.toAssetsUrl('/favicon.ico') %>">
+<link rel="stylesheet" href="<%- Util.toAssetsUrl('/styles/main.css') %>">

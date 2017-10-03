@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- partial("../_common/head") %>
+  </head>
+
+  <% var controllerClass = (req.options.controller || "").replace(/\//g, " "); %>
+
+  <body class="<%- controllerClass %> <%- req.options.action %>">
+
+    <%- body %>
+
+    <script async src="<%- Util.toAssetsUrl('/js/main.js') %>"></script>
+  </body>
+</html>
