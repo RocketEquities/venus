@@ -17,6 +17,6 @@ module.exports = function(grunt) {
     "sass:dev",
     "sync:dev",
     "coffee:dev",
-    "browserify:dev"
+    "webpack:dev"
   ]);
 };
