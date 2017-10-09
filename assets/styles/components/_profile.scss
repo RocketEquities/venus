@@ -1,0 +1,189 @@
+.profile {
+	display: inline-block;
+	width: 30%;
+	float: left;
+
+	border-radius: 4px;
+	background-color: $white;
+	box-shadow: 2px 0 20px 0 rgba(0,0,0,0.1);
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;
+
+	.profile-detail {
+		background: $dark-slate-gray-bg;
+		background: -webkit-gradient(linear, left top, left bottom, from($dark-slate-gray-bg-2), to($dark-slate-gray-bg));
+		background: -webkit-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+		background: -moz-linear-gradient(top, $dark-slate-gray-bg-2, $dark-slate-gray-bg);
+		background: -ms-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+		background: -o-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+		background: linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$dark-slate-gray-bg-2', endColorstr='$dark-slate-gray-bg');
+		zoom: 1;
+
+		color: $white;
+
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;
+
+		padding: 15px;
+		padding-top: 60px;
+		padding-bottom: 30px;
+		position: relative;
+		margin-bottom: 10px;
+
+		min-height: 300px;
+
+		-webkit-border-top-left-radius: 4px;
+		-webkit-border-top-right-radius: 4px;
+		-moz-border-radius-topleft: 4px;
+		-moz-border-radius-topright: 4px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+
+		.icon {
+		  height: 25px;
+	    width: 25px;
+	    display: inline-block;
+	    border: 0;
+	    position: absolute;
+	    cursor: pointer;
+		}
+
+
+		.settings {
+			background: url(#{$img-dir}settings.png) no-repeat center center;
+			-webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+	    top: 15px;
+	    left: 15px;
+		}
+
+		.alert {
+			background: url(#{$img-dir}notif.png) no-repeat center center;
+			-webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+	    top: 15px;
+	    right: 15px;
+		}
+
+		.profile-photo {
+			background: url(http://via.placeholder.com/500?text=imageX) no-repeat center center; 
+			-webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+
+		  height: 75px;
+	    width: 75px;
+	    display: block;
+	    margin: 0 auto;
+	    border: 5px solid $gray-dim;
+
+	    border-radius: 50px;
+		}
+
+		h4 {
+			font-family: $input-font;
+			font-size: 16px;
+			line-height: 19px;
+			text-align: center;
+
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
+
+		.separator {
+			margin: 20px auto;
+			width: 50px;
+		}
+
+		.ci, .de {
+			font-family: $bold-secondary;	
+			color: $white;
+			font-size: 20px;
+			line-height: 24px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		h6 {
+			color: $white;
+			font-family: $input-font;
+			font-size: 12px;
+			line-height: 15px;
+			text-align: center;
+			text-transform: uppercase;
+			margin-top: 10px;
+		}
+	}
+
+	.my-portfolio {
+		padding-bottom: 60px;
+		h3 {
+			color: $dark-slate-gray;
+			font-family: $input-font;
+			font-size: 12px;
+			line-height: 15px;
+			text-align: center;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+		}
+
+		.line {
+			border: 1px solid $gainsboro;
+			opacity: 0.52;
+			width: 95%;
+	    display: block;
+	    margin: 0 auto;
+		}
+
+		ul {
+			padding-top: 15px;
+
+			li {
+				padding: 20px 25px;
+
+				a {
+					text-decoration: none;
+				}
+
+				a .investment-list {
+					h4 {
+						color: $corn-flower-blue;
+						font-family: $bold-secondary;
+						font-size: 16px;
+						font-weight: bold;
+						line-height: 19px;
+						margin-bottom: 3px;
+					}
+
+					h5 {
+						color: $gray-text;
+						font-family: $input-font;
+						font-size: 14px;
+						line-height: 17px;
+
+						span {
+							font-family: $bold-secondary;
+							font-weight: bold;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 64em) {
+	.profile {
+		display: none;
+	}
+}

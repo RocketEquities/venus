@@ -32,6 +32,16 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  "/": "Home.index"
+  // "/*": "Home.index"
+
+
+
+  '/*': function(req, res, next) {
+         if (req.path.match(/\..*/g)) {
+            return next();
+         } else {
+            return res.view('Home/index');
+         }
+      }
 
 };

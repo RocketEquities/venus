@@ -1,0 +1,24 @@
+.dashboard {
+	background-color: $white-smoke;
+	min-height: 100vh;
+	height: 100%;
+	overflow: hidden;
+
+	.container {
+		padding: 0 10%;
+		background-color: $white-smoke;
+		height: 100%;
+		max-width: 1150px;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+
+@media screen and (max-width: 39.9375em) {
+	.dashboard {
+		.container {
+			padding: 0 3%;
+		}
+	}
+}

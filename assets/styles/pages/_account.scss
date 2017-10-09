@@ -1,0 +1,156 @@
+.account {
+	background: $dark-slate-gray-bg;
+	background: -webkit-gradient(linear, left top, left bottom, from($dark-slate-gray-bg-2), to($dark-slate-gray-bg));
+	background: -webkit-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+	background: -moz-linear-gradient(top, $dark-slate-gray-bg-2, $dark-slate-gray-bg);
+	background: -ms-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+	background: -o-linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+	background: linear-gradient($dark-slate-gray-bg-2, $dark-slate-gray-bg);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$dark-slate-gray-bg-2', endColorstr='$dark-slate-gray-bg');
+	zoom: 1;
+
+	min-height: 100vh;
+	height: 100%;
+	padding-top: 5%;
+
+
+	.logo {
+		background: url(#{$img-dir}rocket-equities-white.png) no-repeat center center; 
+	  -webkit-background-size: contain;
+	  -moz-background-size: contain;
+	  -o-background-size: contain;
+	  background-size: contain;
+
+	  height: 105px;
+    width: auto;
+    display: block;
+    border: 0;
+	}
+
+	.container {
+		border-radius: 4px;
+		width: 90%;
+		padding: 3%;
+
+		max-width: 400px;
+		background-color: $white;
+		box-shadow: 2px 0 10px 0 rgba(0,0,0,0.1);
+
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box; 
+
+		transition:width 1s ease-in-out;
+
+		color: $gray-text;
+
+		margin: 0 auto;
+		margin-top: 25px;
+    height: auto;
+
+    .form-container {
+    	max-width: 300px;
+    	width: 100%;
+
+    	display: block;
+    	margin: 0 auto;
+
+    	h2 {
+				color: $dark-slate-gray;
+				font-size: 22px;
+				text-align: center;
+				margin-top: 10px;
+			}
+
+			.separator {
+				height: 2px;
+				width: 50px;
+				background-color: $crimson;
+
+				display: block;
+				margin: 25px auto;
+			}
+
+			.input-text {
+				display: block;
+				margin: 20px auto;
+			}
+
+			.password-input {
+				position: relative;
+
+				.input-text {
+		    	padding-right: 45px;
+		    }
+			}
+
+			.password-show {
+				color: $corn-flower-blue;
+				cursor: pointer;
+				font-family: $input-font;
+				font-size: 10px;
+
+				text-transform: uppercase;
+
+				position: absolute;
+		    top: 15px;
+		    right: 10px;
+			}
+
+			span {
+				font-size: 14px;
+				color: $gray-text;
+				font-family: $input-font;
+
+				text-align: center;
+				display: block;
+
+				margin-bottom: 10px;
+
+				.link {
+					color: $corn-flower-blue;
+					text-decoration: none;
+				}
+
+				.link:hover {
+					text-decoration: underline;
+				}
+			}
+
+			.sub-link {
+				font-size: 12px;
+				font-family: $input-font;
+				color: $gray-sublink;
+				text-decoration: none;
+
+				float: right;
+		    clear: both;
+		    margin-bottom: 30px;
+		    margin-top: -10px;
+				
+
+	    	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+				-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+				box-sizing: border-box;
+			}
+
+			.sub-link:hover {
+				text-decoration: underline;
+			}
+
+    }
+	}
+}
+
+
+@media screen and (max-width: 39.9375em) {
+	.account {
+		.container {
+			padding: 8% 3%;
+
+			.form-container {
+				max-width: 280px;
+			}
+		}
+	}
+}

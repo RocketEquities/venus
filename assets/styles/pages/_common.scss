@@ -1,0 +1,20 @@
+body {
+	background-color: $white-smoke;
+	font-family: $base-font;
+	color: $dark-slate-gray;
+	font-size: 13px;
+
+	height: 100%;
+
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+
+	.separator {
+		height: 2px;
+		width: 90px;
+		background-color: $crimson;
+
+		margin: 10px 0 20px 0;
+	}
+
+}
