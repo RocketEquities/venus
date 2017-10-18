@@ -24,6 +24,12 @@
 
 }
 
+.text-area {
+  height: 120px;
+  line-height: 20px;
+  padding: 2%;
+}
+
 .button {
   background: $white;
   border: 1px solid $steel-blue;
@@ -52,10 +58,23 @@
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
+
 }
 
 .button:hover {
   background: $steel-blue;
   color: $white;
+}
+
+.secondary {
+  background-color: $white-smoke-2;
+  border-color: $white-smoke-2;
+  color: $gray-text-2;
+}
+
+.secondary:hover {
+  background-color: $white-smoke;
+  border-color: $white-smoke;
+  color: $gray-text-2;
 }
 

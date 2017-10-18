@@ -49,7 +49,7 @@ class Investment extends React.Component {
                     Payback Period <span>4 yrs.</span>
                   </div>
                 </div>
-                <button name="invest-now" className="button" value="2" onClick={this.getInvestmentDetails}>INVEST NOW</button>
+                <button name="invest-now" className="button" value="2" onClick={this.getInvestmentDetails}>VIEW DETAILS</button>
               </div>
             </div>
 
@@ -74,7 +74,7 @@ class Investment extends React.Component {
                     Payback Period <span>4 yrs.</span>
                   </div>
                 </div>
-                <button name="invest-now" className="button" value="6" onClick={this.getInvestmentDetails}>INVEST NOW</button>
+                <button name="invest-now" className="button" value="6" onClick={this.getInvestmentDetails}>VIEW DETAILS</button>
               </div>
             </div>
 
@@ -99,7 +99,7 @@ class Investment extends React.Component {
                     Payback Period <span>4 yrs.</span>
                   </div>
                 </div>
-                <button name="invest-now" className="button" value="83" onClick={this.getInvestmentDetails}>INVEST NOW</button>
+                <button name="invest-now" className="button" value="83" onClick={this.getInvestmentDetails}>VIEW DETAILS</button>
               </div>
             </div>
           </div>

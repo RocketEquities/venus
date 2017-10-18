@@ -13,7 +13,7 @@
 		box-sizing: border-box;
 
 		margin-bottom: 4%;
-		padding-bottom: 60px;
+		padding-bottom: 80px;
 		border-radius: 4px;
 		background-color: $white;
 		box-shadow: 2px 0 20px 0 rgba(0,0,0,0.1);
@@ -163,6 +163,16 @@
 		.button:hover {
 			background: none;
 	    color: $crimson;
+		}
+	}
+
+	.i-projection {
+		font-family: $input-font;
+
+		h3 {
+			font-size: 16px;
+			line-height: 19px;
+			margin-bottom: 25px;
 		}
 	}
 

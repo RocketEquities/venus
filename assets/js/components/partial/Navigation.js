@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 		        <div className="wide">
 		          <NavLink activeClassName="selected" exact to="/portfolio">My Portfolio</NavLink>
 		          <NavLink activeClassName="selected" exact to="/investments">Investments</NavLink>
-		          <NavLink activeClassName="selected" exact to="/calculator">Calculator</NavLink>
+		          <NavLink activeClassName="selected" exact to="/logout">Logout</NavLink>
 		        </div>
 		      </div>
 		      <div className="nav-narrow">
@@ -34,7 +34,7 @@ class Navigation extends React.Component {
 		        <div className="hamburger-link">
 		          <NavLink exact to="/portfolio" activeClassName="selected" onClick={this.navToggle}>My Portfolio</NavLink>
 		          <NavLink exact to="/investments" activeClassName="selected" onClick={this.navToggle}>Investments</NavLink>
-		          <NavLink exact to="/calculator" activeClassName="selected" onClick={this.navToggle}>Calculator</NavLink>
+		          <NavLink exact to="/logout" activeClassName="selected" onClick={this.navToggle}>Logout</NavLink>
 		        </div>
 		      </div>
 		    </div>

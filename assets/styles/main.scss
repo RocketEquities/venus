@@ -18,6 +18,8 @@
 @import "components/forms";
 @import "components/navigation";
 @import "components/profile";
+@import "components/toast";
+@import "components/modals";
 
 
 @import "pages/common";
@@ -25,4 +27,7 @@
 @import "pages/dashboard";
 @import "pages/investment";
 @import "pages/investment-detail";
+@import "pages/portfolio";
+@import "pages/settings";
+@import "pages/error";
 

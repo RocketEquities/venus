@@ -1,0 +1,117 @@
+.not-found {
+	background: url(#{$img-dir}landscape.png) no-repeat bottom center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	height: 100vh;
+
+	color: $white;
+
+	.container {
+		padding: 5%;
+		text-align: center;
+
+		.logo {
+			background: url(#{$img-dir}rocket-equities-white-2.png) no-repeat center center; 
+		  -webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+
+		  height: 40px;
+	    width: 100%;
+	    display: block;
+	    border: 0;
+	    margin: 3% auto;
+		}
+
+		.space-404 {
+			background: url(#{$img-dir}error-404.png) no-repeat center center; 
+		  -webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+
+		  height: 200px;
+    	width: 100%;
+	    display: block;
+	    border: 0;
+	    margin: 2% auto;
+		}
+
+		.error-500 {
+			background: url(#{$img-dir}error-500.png) no-repeat center center; 
+		  -webkit-background-size: contain;
+		  -moz-background-size: contain;
+		  -o-background-size: contain;
+		  background-size: contain;
+
+		  height: 200px;
+    	width: 100%;
+	    display: block;
+	    border: 0;
+	    margin: 2% auto;
+		}
+
+		h2 {
+			font-family: $bold-font;
+			font-size: 22px;
+			line-height: 27px;
+			text-transform: uppercase;
+		}
+
+		h3 {
+			font-family: $input-font;
+			font-size: 22px;
+			line-height: 27px;
+		}
+
+		.button {
+			background-color: $crimson;
+			border: 1px solid $crimson;
+			color: $white;
+			text-decoration: none;
+		}
+
+		.button:hover {
+			background: none;
+			color: $white;
+			border: 1px solid $white;
+		}
+	}
+}
+
+@media screen and (max-width: 39.9375em) {
+	.not-found {
+		.container {
+			padding: 20% 10%;
+
+			.logo {
+				height: 30px;
+				margin: 5% auto;
+			}
+
+			.space-404 {
+				height: 100px;
+				margin: 5% auto;
+			}
+
+			.error-500 {
+				height: 100px;
+				margin: 5% auto;
+			}
+
+			h2 {
+				font-size: 14px;
+			}
+
+			h3 {
+				font-size: 12px;
+    		line-height: 17px;
+
+			}
+		}
+	}
+}

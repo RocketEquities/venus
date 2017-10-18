@@ -1,0 +1,196 @@
+.portfolio {
+	.portfolio-detail {
+		width: 67%;
+    float: right;
+	}
+
+	.profit-graph, .transaction-history {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 4%;
+		border-radius: 4px;
+		background-color: $white;
+		box-shadow: 2px 0 20px 0 rgba(0,0,0,0.1);
+
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;
+
+		
+
+		font-family: $base-font;
+		color: $dark-slate-gray;
+
+		h2 {
+			color: $dark-slate-gray;
+			font-family: $bold-secondary;
+			font-size: 22px;
+			line-height: 27px;
+			margin-bottom: 15px;
+		}
+
+		.graph-text {
+			margin-bottom: 25px;
+
+			h4 {
+				color: $dark-slate-gray;
+				font-family: $input-font;
+				font-size: 16px;
+				line-height: 19px;
+				display: inline-block;
+			}
+
+			.graph-label {
+				display: inline-block;
+				float: right;
+    		margin-right: 18px;
+
+				.ep, .ap {
+					width: 10px;
+					height: 10px;
+					display: inline-block;
+					border-radius: 10px;
+					margin: 0 8px 0 35px;
+				}
+
+				.ep {
+					background: #4990E2;
+				}
+
+				.ap {
+					background: #F6A623;
+				}
+
+				h5 {
+					color: $gray-nav-text;
+					font-family: $input-font;
+					font-size: 14px;
+					line-height: 17px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+	.graph-draw {
+		padding: 4%;
+	}
+
+	.graph-info {
+		border-top: 3px solid #F2F5F9;
+		padding: 2% 4%;
+
+		div {
+			width: 25%;
+			display: inline-block;
+			text-align: center;
+
+			color: $gray-sublink;
+			font-family: $input-font;
+			font-size: 12px;
+			line-height: 35px;
+
+			h5 {
+				color: $dark-slate-gray-2;
+				font-family: $bold-secondary;
+				font-size: 20px;
+				line-height: 35px;
+			}
+		}
+	}
+
+	.profit-graph {
+		.button {
+			background: $crimson;
+	    border: 1px solid $crimson;
+	    color: $white;
+	    margin: 20px 0;
+	    margin-bottom: 0;
+	    max-width: 250px;
+		}
+
+		.button:hover {
+			background: none;
+	    color: $crimson;
+		}
+	}
+
+	.transaction-history {
+		font-family: $input-font;
+		padding: 4%;
+
+		h3 {
+			color: $dark-slate-gray;
+			font-family: $input-font;
+			font-size: 12px;
+			line-height: 15px;
+			text-transform: uppercase;
+		}
+
+		table {
+			width: 100%;
+	    text-align: center;
+	    margin-top: 20px;
+
+	    th {
+	    	color: $gray-table;
+	    	font-family: $input-font;
+	    	font-size: 12px;
+	    	line-height: 15px;
+	    	padding: 12px 5px;
+	    	border-top: 1px solid rgba(224, 224, 224, 0.52);
+	    	border-bottom: 1px solid rgba(224, 224, 224, 0.52);
+	    }
+
+	    td {
+	    	color: $black-table;
+	    	font-family: $input-font;
+	    	font-size: 14px;
+	    	line-height: 17px;
+	    	padding: 12px 5px;
+	    	vertical-align: middle;
+	    }
+
+	    tr:nth-child(even){
+			  background-color: $gray-comp;
+			}
+
+			tr {
+				td:first-child{
+					word-wrap: break-word;
+    			width: 40%;
+				}
+			}
+		}
+	}
+
+
+}
+
+@media screen and (max-width: 64em) {
+	.portfolio {
+		.portfolio-detail, .profile {
+			width: 100%;
+		}
+
+		.profile {
+			margin-bottom: 4%;
+		}
+	}
+}
+
+@media screen and (max-width: 39.9375em) {
+		.graph-label {
+				float: none !important;
+    		margin-right: 0 !important;
+    		margin-top: 10px !important;
+
+				.ep, .ap {
+					margin: 0 4px 0 15px !important;
+				}
+
+				.ep {
+					margin-left: 0 !important;
+				}
+			}
+}

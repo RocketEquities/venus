@@ -1,0 +1,104 @@
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid $white;
+    background: $white;
+    overflow: auto;
+    outline: none;
+    padding: 2.5%;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    max-width: 480px;
+
+    .fa-times {
+        cursor: pointer;
+        color: $dark-slate-gray;
+        font-size: 20px;
+        line-height: 20px;
+        float: right;
+    }
+
+    h2 {
+        color: $dark-slate-gray;
+        font-family: $base-font;
+        font-size: 22px;
+        line-height: 27px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: $dark-slate-gray;
+        font-family: $base-font;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .mt {
+        margin-top: 20px;
+    }
+
+    .button {
+        max-width: 225px;
+        float: right;
+        margin: 25px 0;
+    }
+
+    .input-text {
+        background-color: $white;
+        border: 1px solid $gray-border-input-2;
+        border-radius: 3px;
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 5px;
+    }
+
+    .business-details {
+        border-radius: 3px;
+        background-color: $white-smoke;
+        padding: 3%;
+        margin-bottom: 30px;
+        margin-top: 3px;
+
+        .separator {
+            margin: -10px 0 15px 0;
+        }
+
+        h2 {
+            color: $dark-slate-gray;
+            font-family: $bold-font;
+            font-size: 22px;
+            line-height: 27px;
+        }
+
+        h3 {
+            color: $dark-slate-gray;
+            font-family: $bold-font;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        h4 {
+            color: $dark-slate-gray;
+            font-family: $base-font;
+            font-size: 12px;
+            line-height: 15px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.layout {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(102, 102, 102, 0.8);
+}

@@ -49,7 +49,6 @@
 	    display: inline-block;
 	    border: 0;
 	    position: absolute;
-	    cursor: pointer;
 		}
 
 
@@ -136,6 +135,14 @@
 			margin-bottom: 10px;
 		}
 
+		.active-link {
+			background-color: $gray-comp;
+
+			i {
+				display: block !important;
+			}
+		}
+
 		.line {
 			border: 1px solid $gainsboro;
 			opacity: 0.52;
@@ -148,10 +155,26 @@
 			padding-top: 15px;
 
 			li {
-				padding: 20px 25px;
+
+				i {
+			    float: right;
+			    margin-top: 12px;
+			    font-size: 15px;
+			    color: $corn-flower-blue;
+			    opacity: 0.48;
+			    display: none;
+
+				}
+				
 
 				a {
 					text-decoration: none;
+					padding: 20px 25px;
+					display: block;
+				}
+
+				a:hover {
+					background-color: $gray-comp;
 				}
 
 				a .investment-list {
@@ -183,7 +206,5 @@
 
 
 @media screen and (max-width: 64em) {
-	.profile {
-		display: none;
-	}
+	
 }

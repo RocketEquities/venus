@@ -1,0 +1,160 @@
+.settings {
+	.account {
+		display: inline-block;
+		width: 100%;
+		float: left;
+		padding: 3%;
+
+
+		border-radius: 4px;
+		background-color: $white;
+		background: $white;
+		box-shadow: 2px 0 20px 0 rgba(0,0,0,0.1);
+
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;
+
+		min-height: 300px;
+
+		.sub-link {
+			color: $corn-flower-blue;
+			font-family: $input-font;
+			font-size: 14px;
+			line-height: 17px;
+			text-decoration: none;
+		}
+
+		.sub-link:hover {
+			text-decoration: underline;
+		}
+
+		h2 {
+			color: $dark-slate-gray;
+			font-family: $base-font;
+			font-size: 22px;
+			line-height: 27px;
+		}
+
+		h4 {
+			color: $dark-slate-gray;
+			font-family: $bold-font;
+			font-size: 16px;
+			line-height: 24px;
+			margin: 30px 2% 0 2%;
+		}
+
+		.account-form {
+			border-top: 1px solid $white-smoke-2;
+			border-bottom: 1px solid $white-smoke-2;
+			padding: 2% 0;
+			width: auto;
+			margin: 15px 2%;
+			overflow:hidden;
+
+			.profile-photo {
+		    float: left;
+		    margin-right: 3%;
+
+		    text-align: center;
+		    color: $gray-text-2;
+		    font-family: $base-font;
+		    font-size: 14px;
+		    line-height: 24px;
+
+		    .photo {
+		    	background: url(http://via.placeholder.com/500?text=imageX) no-repeat center center; 
+					-webkit-background-size: contain;
+				  -moz-background-size: contain;
+				  -o-background-size: contain;
+				  background-size: contain;
+
+				  height: 200px;
+			    width: 200px;
+
+			    display: block;
+    			margin: auto;
+		    }
+
+		    .sub-link {
+		    	display: block;
+    			margin-top: 8px;
+		    }
+			}
+
+			.profile-form {
+				border: 0;
+				display: inline-block;
+				vertical-align: top;
+    		margin-right: 2%;
+    		margin-top: 20px;
+
+				.input-text {
+					display: block;
+			    border: 1px solid $gray-border-input-2;
+			    border-radius: 3px;
+			    background: $white;
+			    max-width: 350px;
+			    width: 350px;
+			    margin: 8px 0 35px 0;
+
+			    color: $gray-text-2;
+			    font-family: $bold-font;
+			    font-size: 14px;
+			    line-height: 17px;
+				}
+
+				label {
+					color: $dark-slate-gray;
+					font-family: $base-font;
+					font-size: 14px;
+					line-height: 24px;
+				}
+
+				.password {
+					margin-bottom: 10px;
+				}
+			}
+		}
+
+		.button {
+			display: inline-block;
+			float: right;
+			margin: 0 22px 0 10px;
+			max-width: 195px;
+
+		}
+	}
+}
+
+
+@media screen and (max-width: 39.9375em) {
+	.settings {
+		.account {
+			.account-form {
+				padding: 5% 0;
+
+				.profile-photo {
+					margin: 0 auto;
+    			float: none;
+				}
+
+				.profile-form {
+					width: 100%;
+
+					.input-text {
+						width: 100%;
+						max-width: 100%;
+    				margin: 8px auto 15px auto;
+					}
+				}
+			}
+
+			.button {
+				display: block;
+		    margin: 10px auto;
+		    float: none;
+			}
+		}
+	}
+}
