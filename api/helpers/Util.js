@@ -6,8 +6,8 @@
 module.exports = {
 
   toAssetsUrl: function(path) {
-    var assetsBaseUrl = sails.config.assets.baseUrl || "";
-    var assetsUrl = assetsBaseUrl + (path || "/");
+    const assetsBaseUrl = _.get(sails.config, "assets.baseUrl") || "";
+    const assetsUrl = assetsBaseUrl + (path || "/");
     return assetsUrl;
   }
 
