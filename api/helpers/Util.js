@@ -15,10 +15,10 @@ module.exports = {
 
   //----------------------------------------------------------------------------
 
-  toHash: function(value) {
+  toHash: function(data, encoding) {
     const hash = crypto.createHmac("sha256", "venus")
-                       .update(value)
-                       .digest("hex");
+                       .update(data)
+                       .digest(encoding || "hex");
     return hash;
   }
 

@@ -26,9 +26,9 @@ describe(TEST_NAME, function() {
 
   describe(".toHash()", function() {
     it("should return hashed value of the given argument", function() {
-      const input = "some value";
-      const hash = this.Util.toHash(input);
-      expect(hash).to.not.equal(input);
+      const data = "some value";
+      const hash = this.Util.toHash(data);
+      expect(hash).to.not.equal(data);
       expect(hash).to.match(/[:xdigit:]/);
     });
   });
