@@ -14,13 +14,22 @@ describe(TEST_NAME, function() {
      sails.config.assets = this.assetsConfig;
   });
 
-  describe(".toAssetsUrl", function() {
+  describe(".toAssetsUrl()", function() {
     it("should return assets url given a path", function() {
       sails.config.assets = { baseUrl: "" };
       expect(this.Util.toAssetsUrl("/images/sample.png")).to.equal("/images/sample.png");
 
       sails.config.assets = { baseUrl: "http://localhost" };
       expect(this.Util.toAssetsUrl("/images/sample.png")).to.equal("http://localhost/images/sample.png");
+    });
+  });
+
+  describe(".toHash()", function() {
+    it("should return hashed value of the given argument", function() {
+      const input = "some value";
+      const hash = this.Util.toHash(input);
+      expect(hash).to.not.equal(input);
+      expect(hash).to.match(/[:xdigit:]/);
     });
   });
 });
