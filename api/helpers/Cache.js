@@ -3,18 +3,20 @@
  *
  */
 
-module.exports = Cache;
-
-
-const Util = require("./Util");
 const Memori = require("memori");
-Cache.prototype = Object.create(Memori.prototype);
+const Util = require("./Util");
+
+
+module.exports = Cache;
 
 //==============================================================================
 
+//-- protected variable
 const _instanceMap = {};
 
+//------------------------------------------------------------------------------
 //-- constructor
+
 function Cache(options) {
   const self = this;
 
@@ -28,8 +30,14 @@ function Cache(options) {
     get: function() { return _options; }
   });
 
+  //-- super
   Memori.call(self, _options);
 }
+
+//------------------------------------------------------------------------------
+//-- inherit from Memori
+
+Cache.prototype = Object.create(Memori.prototype);
 
 //==============================================================================
 //-- helpers
