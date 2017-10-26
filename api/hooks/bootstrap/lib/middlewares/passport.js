@@ -1,26 +1,27 @@
 /**
- * middleware: index
+ * middleware: passport
  *
  */
 
-module.exports = index;
+module.exports = passport;
 
 
 var async = require("async");
+var passport = require("passport");
 
 //==============================================================================
 
-function index(sails) {
+function passport(sails) {
+
   var middlewares = [
-    require("./passport")(sails),
-    require("./locals")(sails),
-    require("./headers")(sails),
-    require("./misc")(sails)
+    passport.initialize(),
+    passport.session()
   ];
 
   return function(req, res, next) {
     async.applyEachSeries(middlewares, req, res, next);
   }
+
 }
 
 //==============================================================================
