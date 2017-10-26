@@ -21,6 +21,23 @@ module.exports = {
     adapter: "memory"
   },
 
+  //-- cache
+  cache: {
+    adapter: "memory"
+  },
+
+  //-- connections
+  connections: {
+    mysql: {
+      adapter: "sails-memory",
+      host: "localhost",
+      user: "venus",
+      password: "venus",
+      database: "venus",
+      timezone: "utc"
+    }
+  },
+
   //-- cors
   cors: {
     allRoutes: true,
