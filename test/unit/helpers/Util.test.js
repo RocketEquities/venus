@@ -32,4 +32,19 @@ describe(TEST_NAME, function() {
       expect(hash).to.match(/[:xdigit:]/);
     });
   });
+
+  describe(".toInstanceKey()", function() {
+    it("returns string equivalent of non plain object parameter", function() {
+      expect(this.Util.toInstanceKey(new Object())).to.equal("");
+      expect(this.Util.toInstanceKey(undefined)).to.equal("");
+      expect(this.Util.toInstanceKey(null)).to.equal("");
+      expect(this.Util.toInstanceKey(1)).to.equal("1");
+      expect(this.Util.toInstanceKey("2")).to.equal("2");
+    });
+
+    it("returns formatted string equivalent of object parameter", function() {
+      expect(this.Util.toInstanceKey({ k1: "v1" })).to.equal("k1:v1");
+      expect(this.Util.toInstanceKey({ k1: "v1", k2: { k3: "v3" } })).to.equal("k1:v1,k2:k3:v3");
+    });
+  });
 });

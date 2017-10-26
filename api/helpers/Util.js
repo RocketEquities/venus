@@ -3,6 +3,7 @@
  *
  */
 
+const _ = require("lodash");
 const crypto = require("crypto");
 
 module.exports = {
@@ -20,7 +21,24 @@ module.exports = {
                        .update(data)
                        .digest(encoding || "hex");
     return hash;
-  }
+  },
 
+  //----------------------------------------------------------------------------
+
+  toInstanceKey: function(value) {
+    const self = this;
+    let key = "";
+
+    if (_.isPlainObject(value)) {
+      _.forEach(_.keys(value).sort(), function(k) {
+          key && (key += ",");
+          key += (k + ":" + self.toInstanceKey(value[k]));
+      });
+    } else {
+      key = _.toString(value);
+    }
+
+    return key;
+  }
 
 };
