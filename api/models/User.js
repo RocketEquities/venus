@@ -3,6 +3,9 @@
  *
  */
 
+const validator = require("validator");
+
+
 module.exports = {
 
   tableName: "users",
@@ -51,18 +54,44 @@ module.exports = {
       type: "datetime"
     },
 
-    //-- instance method -------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //-- instance method
 
-    toJSON: function() {
+    toJSON: () => {
       const obj = this.toObject();
       delete obj.password;
       return obj;
     }
   },
 
-  //-- lifecycle callback ------------------------------------------------------
+  //----------------------------------------------------------------------------
+  //-- static method
 
-  afterValidate: function(values, next) {
+  authenticate: (credentials, done) => {
+    const email = _.get(credentials, "email") || "";
+    const clearPassword = _.get(credentials, "password") || "";
+    const hashedPassword = sails.helpers.Util.toHash(clearPassword);
+
+    if (!validator.isEmail(email) || _.isEmpty(clearPassword)) {
+      return done(Exception.ValidationError("Invalid email or password."));
+    }
+
+    User.findByEmail(email).exec((err, user) => {
+      if (err) {
+        sails.log.error("User.authenticate:", err);
+        return done(Exception.UnknownError());
+      }
+      if (user.password !== hashedPassword) {
+        return done(Exception.ValidationError("Invalid email or password."));
+      }
+      done(null, user);
+    });
+  },
+
+  //----------------------------------------------------------------------------
+  //-- lifecycle callback
+
+  afterValidate: (values, next) => {
     if (values.password) {
       values.password = sails.helpers.Util.toHash(values.password);
     }

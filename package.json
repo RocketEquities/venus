@@ -45,6 +45,7 @@
     "sails-hook-meta": "^0.3.1",
     "sails-mysql": "^0.11.5",
     "stderror": "^0.2.1",
+    "validator": "^9.1.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
     "winston": "^2.2.0"
