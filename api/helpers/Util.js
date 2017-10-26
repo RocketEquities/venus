@@ -37,8 +37,8 @@ function toInstanceKey(value) {
 
   if (_.isPlainObject(value)) {
     _.forEach(_.keys(value).sort(), function(k) {
-        key && (key += ",");
-        key += (k + ":" + toInstanceKey(value[k]));
+      key && (key += ",");
+      key += (k + ":" + toInstanceKey(value[k]));
     });
   } else {
     key = _.toString(value);

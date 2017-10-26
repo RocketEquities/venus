@@ -6,28 +6,23 @@
 module.exports = Cache;
 
 
-var Memori = require("memori");
+const Util = require("./Util");
+const Memori = require("memori");
 Cache.prototype = Object.create(Memori.prototype);
 
 //==============================================================================
 
-var _cacheMap = {};
+const _instanceMap = {};
 
 //-- constructor
 function Cache(options) {
-  var self = this;
+  const self = this;
 
   if (! (self instanceof Cache)) {
-    var _cacheKey = toCacheKey(options);
-    var _cacheInstance = _cacheMap[_cacheKey];
-    if (!_cacheInstance) {
-      _cacheInstance = _cacheMap[_cacheKey] = new Cache(options);
-    }
-
-    return _cacheInstance;
+    return getInstance(options);
   }
 
-  var _options = _.merge({}, sails.config.cache, options);
+  let _options = _.merge({}, sails.config.cache, options);
 
   Object.defineProperty(self, "options", {
     get: function() { return _options; }
@@ -37,15 +32,17 @@ function Cache(options) {
 }
 
 //==============================================================================
+//-- helpers
 
-function toCacheKey(obj) {
-  var key = "default";
+function getInstance(options) {
+  let instanceKey = Util.toInstanceKey(options) || "default";
+  let instance = _instanceMap[instanceKey];
 
-  _.forEach(_.keys(obj).sort(), function(k) {
-    key += "," + k + ":" + obj[k];
-  });
+  if (!instance) {
+    instance = _instanceMap[instanceKey] = new Cache(options);
+  }
 
-  return key;
+  return instance;
 }
 
 //==============================================================================
