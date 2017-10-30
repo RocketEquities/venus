@@ -81,7 +81,7 @@ module.exports = {
         sails.log.error("User.authenticate:", err);
         return done(Exception.UnknownError());
       }
-      if (user.password !== hashedPassword) {
+      if (_.isEmpty(user) || user.password !== hashedPassword) {
         return done(Exception.Unauthorized());
       }
       done(null, user.toJSON());

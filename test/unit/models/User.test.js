@@ -147,6 +147,17 @@ describe(TEST_NAME, function() {
       });
     });
 
+    context("user does not exist", function() {
+      it("should return 'Unauthorized' error", function(done) {
+        let credentials = {email: "nouser@abc.com", password: "pass1234"};
+        User.authenticate(credentials, function(err, user) {
+          expect(user).to.not.exist;
+          expect(err).to.be.an.instanceof(Exception.Unauthorized);
+          done();
+        })
+      });
+    });
+
     context("valid email and password", function() {
       it("should return user record without password attribute", function(done) {
         let credentials = {email: "user1@abc.com", password: "pass1234"};
