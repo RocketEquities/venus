@@ -39,7 +39,7 @@ function Passport(options) {
 //------------------------------------------------------------------------------
 //-- instance methods
 
-Passport.prototype.authenticate = (done) => {
+Passport.prototype.authenticate = function(done) {
   return (req, res) => {
     passport.authenticate("local", (err, user, info, status) => {
       done(err, user);
@@ -63,7 +63,7 @@ function deserializeUser(user, done) {
   }
 
   //-- otherwise, assume serialized user is a user id
-  User.findById(user).exec((err, user) => {
+  User.findOneById(user).exec((err, user) => {
     done(err, user);
   });
 }
