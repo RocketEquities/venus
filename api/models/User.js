@@ -57,7 +57,7 @@ module.exports = {
     //--------------------------------------------------------------------------
     //-- instance method
 
-    toJSON: () => {
+    toJSON: function() {
       const obj = this.toObject();
       delete obj.password;
       return obj;
@@ -67,31 +67,31 @@ module.exports = {
   //----------------------------------------------------------------------------
   //-- static method
 
-  authenticate: (credentials, done) => {
+  authenticate: function(credentials, done) {
     const email = _.get(credentials, "email") || "";
     const clearPassword = _.get(credentials, "password") || "";
     const hashedPassword = sails.helpers.Util.toHash(clearPassword);
 
     if (!validator.isEmail(email) || _.isEmpty(clearPassword)) {
-      return done(Exception.ValidationError("Invalid email or password."));
+      return done(Exception.Unauthorized());
     }
 
-    User.findByEmail(email).exec((err, user) => {
+    User.findOneByEmail(email).exec((err, user) => {
       if (err) {
         sails.log.error("User.authenticate:", err);
         return done(Exception.UnknownError());
       }
       if (user.password !== hashedPassword) {
-        return done(Exception.ValidationError("Invalid email or password."));
+        return done(Exception.Unauthorized());
       }
-      done(null, user);
+      done(null, user.toJSON());
     });
   },
 
   //----------------------------------------------------------------------------
   //-- lifecycle callback
 
-  afterValidate: (values, next) => {
+  afterValidate: function(values, next) {
     if (values.password) {
       values.password = sails.helpers.Util.toHash(values.password);
     }
