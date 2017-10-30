@@ -50,6 +50,10 @@ module.exports.routes = {
   "PUT    /profile" : "Profile.update",
   "PATCH  /profile" : "Profile.update",
 
+  "GET    /investments" : "Investment.index",
+  "GET    /portfolio"   : "Portfolio.index",
+  "GET    /settings"    : "Settings.index",
+
 
   //-- temporary routes
   "POST   /users"     : "User.create",

@@ -1,5 +1,5 @@
 /**
- * HomeController
+ * SettingsController
  *
  */
 
