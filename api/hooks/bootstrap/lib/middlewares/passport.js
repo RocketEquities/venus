@@ -18,7 +18,7 @@ function passport(sails) {
     passport.session()
   ];
 
-  return function(req, res, next) {
+  return (req, res, next) => {
     async.applyEachSeries(middlewares, req, res, next);
   }
 
