@@ -41,8 +41,21 @@ module.exports.routes = {
   //--    }
   //-- }
 
-  "GET  /"       : "Home.index",
-  "POST /login"  : "User.login",
-  "POST /logout" : "User.logout"
+  "GET    /" : "Home.index",
+
+  "POST   /login"   : "User.login",
+  "POST   /logout"  : "User.logout",
+
+  "GET    /profile" : "Profile.show",
+  "PUT    /profile" : "Profile.update",
+  "PATCH  /profile" : "Profile.update",
+
+
+  //-- temporary routes
+  "POST   /users"     : "User.create",
+  "PUT    /users/:id" : "User.update",
+  "DELETE /users/:id" : "User.destroy"
+
+
 
 };
