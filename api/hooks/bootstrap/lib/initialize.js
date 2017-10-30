@@ -36,13 +36,16 @@ function initialize(sails) {
 
       //-- expose some globals
       Object.defineProperty(global, "Exception", {
-        get: function() { return helpers.Exception; }
+        get: function() { return helpers.Exception; },
+        configurable: true
       });
       Object.defineProperty(global, "_", {
-        get: function() { return _; }
+        get: function() { return _; },
+        configurable: true
       });
       Object.defineProperty(global, "async", {
-        get: function() { return async; }
+        get: function() { return async; },
+        configurable: true
       });
 
       //-- other settings
