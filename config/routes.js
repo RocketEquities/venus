@@ -32,16 +32,17 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  // "/*": "Home.index"
+  //-- commenting this out for now...
+  //-- "/*": function(req, res, next) {
+  //--    if (req.path.match(/\..*/g)) {
+  //--       return next();
+  //--    } else {
+  //--       return res.view("Home/index");
+  //--    }
+  //-- }
 
-
-
-  '/*': function(req, res, next) {
-         if (req.path.match(/\..*/g)) {
-            return next();
-         } else {
-            return res.view('Home/index');
-         }
-      }
+  "GET  /"       : "Home.index",
+  "POST /login"  : "User.login",
+  "POST /logout" : "User.logout"
 
 };
