@@ -41,7 +41,8 @@ module.exports.routes = {
   //--    }
   //-- }
 
-  "GET    /" : "Home.index",
+  "GET    /"        : "Home.index",
+  "GET    /login"   : "Home.login",
 
   "POST   /login"   : "User.login",
   "POST   /logout"  : "User.logout",
