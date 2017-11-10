@@ -98,7 +98,7 @@ class InvestmentDetail extends React.Component {
             <div className="text">
               Palaya Dragonfruit Eco-Natural Farm aims to be the leading dragonfruit producer and distributor in the Philippines by 2020, putting the country on the global map.
             </div>
-            <button name="view-pitch" className="button">VIEW PITCH DECK</button>
+            
           </div>
           <div className="i-projection">
             <h3>Projected Profits Per Year</h3>

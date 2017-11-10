@@ -19,8 +19,8 @@ module.exports = function(grunt) {
         path: ".tmp/public/js/",
         filename: "main.js"
       },
-      watch: false,
-      hot: false,
+      watch: true,
+      hot: true,
       module: {
         loaders: [{
           test: /\.js$/,

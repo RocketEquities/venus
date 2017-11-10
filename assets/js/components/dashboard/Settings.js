@@ -17,7 +17,7 @@ class Settings extends React.Component {
   }
 
   notify() {
-    toast("Success Message");
+    toast("Hellooo");
   }
 
   render() {
@@ -32,7 +32,7 @@ class Settings extends React.Component {
           <div>
             
             <ToastContainer 
-              position="top-right"
+              position="top-center"
               closeButton={<CloseButton />}
               type="default"
               autoClose={4000}
@@ -40,7 +40,7 @@ class Settings extends React.Component {
               newestOnTop={false}
               closeOnClick
               pauseOnHover
-              toastClassName="success"
+              toastClassName="error"
               newestOnTop={true}
 
             />
@@ -58,8 +58,10 @@ class Settings extends React.Component {
               Max file size 5MB.
             </div>
             <div className="profile-form">
-              <label>Full Name</label>
-              <input type="text" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="Full Name" />
+              <label>First Name</label>
+              <input type="text" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="First Name" />
+              <label>Last Name</label>
+              <input type="text" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="Last Name" />
               <label>Email</label>
               <input type="email" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="Email" />
             </div>
@@ -69,7 +71,7 @@ class Settings extends React.Component {
               <Link to="/changepassword" className="sub-link">Change Password</Link>
             </div>
           </div>
-          <input type="button" name="save" value="SAVE CHANGES" className="button"/>
+          <input type="button" name="save" value="SAVE CHANGES"  onClick={this.notify} className="button"/>
           <input type="button" name="cancel" value="CANCEL" className="button secondary"/>
         </div>
       </div>
