@@ -1,10 +1,10 @@
 /**
- * InvestmentController
+ * ProfitController
  *
  */
 
 module.exports = {
   index: (req, res) => {
-    res.apiSuccess({investments: []});
+    res.apiSuccess({profits: []});
   }
 };

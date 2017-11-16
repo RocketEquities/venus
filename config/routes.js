@@ -51,7 +51,74 @@ module.exports.routes = {
   "PUT    /profile" : "Profile.update",
   "PATCH  /profile" : "Profile.update",
 
+  //----------------------------------------------------------------------------
+
+  "GET    /businesses" : "Business.index",
+  /**
+  {
+    data: {
+      businesses: [
+        {
+          id: <id>,
+          name: <name>,
+          description: <description>,
+          overview: <overview>,
+          createdAt: <date>,
+          updatedAt: <date>
+        }
+      ]
+    }
+  }
+  */
+
+  //----------------------------------------------------------------------------
+
   "GET    /investments" : "Investment.index",
+  /**
+  {
+    data: {
+      investments: [
+        {
+          id: <id>,
+          business: {
+            id: <id>,
+            name: <name>
+          },
+          amount: <amount>,
+          createdAt: <date>,
+          updatedAt: <date>
+        }
+      ]
+    }
+  }
+  */
+
+  //----------------------------------------------------------------------------
+
+  "GET    /profits" : "Profit.index",
+  /**
+  {
+    data: {
+      profits: [
+        {
+          id: <id>,
+          business: {
+            id: <id>,
+            name: <name>
+          },
+          actualAmount: <amount>,
+          expectedAmount: <amount>,
+          expectedAt: <date>,
+          createdAt: <date>,
+          updatedAt: <date>
+        }
+      ]
+    }
+  }
+  */
+
+  //----------------------------------------------------------------------------
+
   "GET    /portfolio"   : "Portfolio.index",
   "GET    /settings"    : "Settings.index",
 
