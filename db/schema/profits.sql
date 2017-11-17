@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS profits (
     expected_amount DECIMAL(13,2) NOT NULL,
     expected_at DATETIME,
     created_at DATETIME,
-    updated_at DATETIME
+    updated_at DATETIME,
+    INDEX (user_id, business_id)
 ) ENGINE = InnoDB;

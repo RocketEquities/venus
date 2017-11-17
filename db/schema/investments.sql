@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS investments (
     business_id INT(11) NOT NULL,
     amount DECIMAL(13,2) NOT NULL,
     created_at DATETIME,
-    updated_at DATETIME
+    updated_at DATETIME,
+    INDEX (user_id, business_id)
 ) ENGINE = InnoDB;
