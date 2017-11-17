@@ -18,10 +18,10 @@ module.exports = function(req, res, next) {
   }
 
   res.format({
-    html: function() {
+    html: () => {
       res.redirect("/login");
     },
-    json: function() {
+    json: () => {
       res.apiError(new Exception.Forbidden("You are not permitted to perform this action"));
     }
   });
