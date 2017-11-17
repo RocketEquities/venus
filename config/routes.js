@@ -73,17 +73,19 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
-  "GET    /investments" : "Investment.index",
+  "GET    /businesses/:business_id/investments" : "Investment.index",
   /**
   {
     data: {
+      business: {
+        id: <id>,
+        name: <name>,
+        description: <description>,
+        overview: <overview>
+      },
       investments: [
         {
           id: <id>,
-          business: {
-            id: <id>,
-            name: <name>
-          },
           amount: <amount>,
           createdAt: <date>,
           updatedAt: <date>
@@ -95,17 +97,19 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
-  "GET    /profits" : "Profit.index",
+  "GET    /businesses/:business_id/profits" : "Profit.index",
   /**
   {
     data: {
+      business: {
+        id: <id>,
+        name: <name>,
+        description: <description>,
+        overview: <overview>
+      },
       profits: [
         {
           id: <id>,
-          business: {
-            id: <id>,
-            name: <name>
-          },
           actualAmount: <amount>,
           expectedAmount: <amount>,
           expectedAt: <date>,
