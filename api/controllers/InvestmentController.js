@@ -13,7 +13,7 @@ function index(req, res) {
   const userId = _.get(req, "user.id");
   const businessId = req.param("business_id");
 
-  if (_.isEmpty(userId) || _.isEmpty(businessId)) {
+  if (!userId || !businessId) {
     return res.apiError(new Exception.NotFound());
   }
 
