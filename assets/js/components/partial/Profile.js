@@ -10,16 +10,13 @@ class Profile extends React.Component {
 	  return (
 	    <div className="profile">
         <div className="profile-detail">
-          <Link className="icon settings" to="/accounts/settings"></Link>
+          <Link className="icon settings" to="/settings"></Link>
           <span className="icon alert"></span>
           <div className="profile-photo"></div>
           <h4>Welcome back Akarsh!</h4>
           <div className="separator"></div>
           <div className="ci">450,000 USD</div>
           <h6>Total Current Investments</h6>
-          <div className="separator"></div>
-          <div className="de">1,000 USD</div>
-          <h6>Dividends Earned</h6>
         </div>
         <div className="my-portfolio">
           <h3>My portfolio</h3>

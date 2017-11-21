@@ -91,22 +91,18 @@ class Portfolio extends React.Component {
             <table>
               <tbody>
                 <tr>
-                  <th>BUSINESS NAME</th>
                   <th>AMOUNT INVESTED</th>
                   <th>DATE INVESTED</th>
                 </tr>
                 <tr>
-                  <td>Dragon Fruit farm</td>
                   <td>$50,000.00</td>
                   <td>07-22-2017</td>
                 </tr>
                 <tr>
-                  <td>Cacao Farm</td>
                   <td>$50,000.00</td>
                   <td>07-22-2017</td>
                 </tr>
                 <tr>
-                  <td>Corn Farmkjdfskljfsljfslfk jklsdfsklfjskl jldskjflksjfslk</td>
                   <td>$50,000.00</td>
                   <td>07-22-2017</td>
                 </tr>

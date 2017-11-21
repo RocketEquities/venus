@@ -32,14 +32,11 @@ class Login extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.login_authorized) {
-        console.log('correct log in!');
         //redirect to homepage
-        //save login session
         this.props.history.push('/');
       } else {
         toast(nextProps.login_response.message);
         this.setState({toastType: 'error'});
-        console.log('error log in!');
       }
   }
 

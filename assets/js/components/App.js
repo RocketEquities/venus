@@ -22,9 +22,9 @@ const App = () => (
 	    	<AccountLayout exact path="/forgot" component={Reset} />
 	      <DashboardLayout exact path="/portfolio" component={Portfolio} />
 	      <DashboardLayout exact path="/portfolio/:id" component={Portfolio} />
-	      <Redirect exact from='/' to='/investments'/>
-	      <DashboardLayout exact path="/investments" component={Investment} />
-	      <DashboardLayout exact path="/investments/:id" component={InvestmentDetail} />
+	      <Redirect exact from='/' to='/businesses'/>
+	      <DashboardLayout exact path="/businesses" component={Investment} />
+	      <DashboardLayout exact path="/businesses/:id" component={InvestmentDetail} />
 	      <DashboardLayout exact path="/settings" component={Settings} />
 	      
 	      <Route path="*" component={NotFound}/>
