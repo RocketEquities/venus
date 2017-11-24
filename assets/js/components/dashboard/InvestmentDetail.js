@@ -1,14 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import BarChart from '../partial/BarChart.js';
 import Modal from 'react-modal';
+import moment from 'moment';
+
+import { business_detail } from '../../actions/BusinessActions.js';
+
+@connect((store) => {
+  return {
+    business_detail_response: store.business.business_detail_response,
+    business_detail_response_investment: store.business.business_detail_response_investment,
+    chart_ready: store.business.chart_ready
+  };
+})
 
 class InvestmentDetail extends React.Component {
   constructor(props) {
   	super(props);
     this.state = {
       chartData: {},
-      modalIsOpen: false
+      modalIsOpen: false,
+      chartAmount_: [],
+      chartReady: false
+
     }
 
     this.openModal = this.openModal.bind(this);
@@ -17,7 +32,35 @@ class InvestmentDetail extends React.Component {
   }
 
   componentWillMount() {
-    this.getChartData();
+    this.props.dispatch(business_detail(this.props.match.params.id));
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.chart_ready) {
+      var chartAmount = nextProps.business_detail_response_investment.map(a => Math.floor(a.amount));
+      var chartLabel = nextProps.business_detail_response_investment.map(a => [moment(a.createdAt).format('MMMM').toUpperCase(), moment(a.createdAt).format('YYYY').toUpperCase()]);
+
+      this.setState({
+        chartData: {
+          labels: chartLabel,
+          datasets: [
+          {
+            data: chartAmount,
+
+            backgroundColor: [
+              '#4990E2',
+              '#4990E2',
+              '#4990E2',
+              '#4990E2',
+              '#4990E2',
+              '#4990E2',
+              '#4990E2'
+            ]
+          }
+          ]
+        }
+      });
+    }
   }
 
   openModal() {
@@ -25,70 +68,39 @@ class InvestmentDetail extends React.Component {
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
     this.setState({modalIsOpen: false});
   }
 
-
-  getChartData() {
-    this.setState({
-      chartData: {
-        labels: [['March', '2017'], ['March', '2018'], ['March', '2019'], ['March', '2020'], ['March', '2021'], ['March', '2022'], ['March', '2023']],
-        datasets: [
-        {
-          data: [
-            400,
-            9700,
-            600,
-            1800,
-            8770,
-            100,
-            90
-          ],
-          backgroundColor: [
-            '#4990E2',
-            '#4990E2',
-            '#4990E2',
-            '#4990E2',
-            '#4990E2',
-            '#4990E2',
-            '#4990E2'
-          ]
-        }
-        ]
-      }
-    });
-  }
-
   render() {
+    const mygraph = this.props.chart_ready ? <BarChart chartData={this.state.chartData} height='300' redraw /> : "";
+
 	  return (
 	    <div className="investment-detail">
         <div className="i-title">
-          <div className="item-img"></div>
+          
               <div className="item-details">
-                <h3>Palaya Dragonfruit Eco-Natural Farm {this.props.match.params.id}</h3>
+                <h3>{this.props.business_detail_response.name}</h3>
                 <div className="separator"></div>
                 <h6>Capital Requirement:</h6>
-                <div className="requirement">3,000,000 USD</div>
+                <div className="requirement">{this.props.business_detail_response.capitalreq}</div>
                 <div className="comp">
                   <div className="irr">
-                    IRR <span>7.1%</span>
+                    IRR <span>{this.props.business_detail_response.irr}</span>
                   </div>
                   <div className="em">
-                    Equity Multiple <span>14x</span>
+                    Equity Multiple <span>{this.props.business_detail_response.em}</span>
                   </div>
                   <div className="ip">
-                    Investment Period <span>20 yrs.</span>
+                    Investment Period <span>{this.props.business_detail_response.ip}</span>
                   </div>
                   <div className="pr">
-                    Payback Period <span>4 yrs.</span>
+                    Payback Period <span>{this.props.business_detail_response.pr}</span>
                   </div>
                 </div>
-                <button name="invest-now" className="button" value="2" onClick={this.openModal}>INVEST NOW</button>
+                <button name="invest-now" className="button" value={this.props.business_detail_response.id} onClick={this.openModal}>INVEST NOW</button>
               </div>
         </div>
         <div className="i-c">
@@ -96,13 +108,13 @@ class InvestmentDetail extends React.Component {
             <h2>Business Overview</h2>
             <div className="separator"></div>
             <div className="text">
-              Palaya Dragonfruit Eco-Natural Farm aims to be the leading dragonfruit producer and distributor in the Philippines by 2020, putting the country on the global map.
+              {this.props.business_detail_response.overview}
             </div>
             
           </div>
           <div className="i-projection">
             <h3>Projected Profits Per Year</h3>
-            <BarChart chartData={this.state.chartData} height="300"/>
+            {mygraph}
           </div>
         </div>
 
@@ -122,10 +134,10 @@ class InvestmentDetail extends React.Component {
           <h4>Please provide us with the necessary information below. Our team of investment experts will contact you as soon as possible.</h4>
           <h4 className="mt">Business</h4>
           <div className="business-details">
-            <h2>Sierra Madre Cocao Company</h2>
+            <h2>{this.props.business_detail_response.name}</h2>
             <div className="separator"></div>
             <h4>Capital Requirement:</h4>
-            <h3>750,000 USD</h3>
+            <h3>{this.props.business_detail_response.capitalreq}</h3>
           </div>
 
           <h4 className="mt">Amount to be invested</h4>

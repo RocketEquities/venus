@@ -39,6 +39,7 @@ class Investment extends React.Component {
               <InvestmentItem key={business_response.id} {...business_response} />
             )}
           </div>
+          <Link to="/businesses/1">test</Link>
         </div>
       </div>
     );
