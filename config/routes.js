@@ -73,6 +73,24 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
+  "GET    /businesses/:id" : "Business.show",
+  /**
+  {
+    data: {
+      business: {
+        id: <id>,
+        name: <name>,
+        description: <description>,
+        overview: <overview>,
+        createdAt: <date>,
+        updatedAt: <date>
+      }
+    }
+  }
+  */
+
+  //----------------------------------------------------------------------------
+
   "GET    /businesses/:business_id/investments" : "Investment.index",
   /**
   {

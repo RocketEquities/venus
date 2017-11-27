@@ -4,28 +4,42 @@
  */
 
 module.exports = {
-  index: index
+  index: index,
+  show: show
 };
 
 //==============================================================================
 
 function index(req, res) {
-  function getBusinesses(next) {
-    Business.find().limit(10).exec(next);
-  }
-
-  function done(err, result) {
-    const businesses = _.get(result, "businesses") || [];
-
+  Business.find().limit(10).exec((err, businesses) => {
     if (err) {
       return res.apiError(err);
     }
 
     res.apiSuccess({ businesses: businesses });
+  });
+}
+
+//------------------------------------------------------------------------------
+
+function show(req, res) {
+  const id = req.param("id");
+  const where = { id: id };
+
+  if (!id) {
+    return res.apiError(new Exception.NotFound());
   }
 
-  //-- execute
-  async.series({ businesses: getBusinesses }, done);
+  Business.findOne().where(where).exec((err, business) => {
+    if (err) {
+      return res.apiError(err);
+    }
+    if (_.isEmpty(business)) {
+      return res.apiError(new Exception.NotFound());
+    }
+
+    res.apiSuccess({ business: business });
+  });
 }
 
 //==============================================================================
