@@ -141,8 +141,10 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
-  "GET    /portfolio"   : "Portfolio.index",
-  "GET    /settings"    : "Settings.index",
+  "GET    /portfolio"     : "Portfolio.index",
+  "GET    /portfolio/:id" : "Portfolio.show",
+
+  "GET    /settings"      : "Settings.index",
 
 
   //-- temporary routes

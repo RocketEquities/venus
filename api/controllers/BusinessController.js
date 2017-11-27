@@ -26,6 +26,10 @@ function show(req, res) {
   const id = req.param("id");
   const where = { id: id };
 
+  if (!req.wantsJSON) {
+    return res.view("index");
+  }
+
   if (!id) {
     return res.apiError(new Exception.NotFound());
   }
