@@ -52,10 +52,7 @@ class Login extends React.Component {
       this.setState({toastType: 'error'});
 
     } else {
-      var hashP = CryptoJS.SHA1(this.state.input.password);
-      hashP     = hashP.toString(CryptoJS.enc.Hex);
-
-      this.props.dispatch(login(this.state.input.email, hashP));
+      this.props.dispatch(login(this.state.input.email, this.state.input.password));
       
     }
   }
