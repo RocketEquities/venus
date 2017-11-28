@@ -44,7 +44,7 @@ function index(req, res) {
 
     const investmentSummary = _.reduce(businesses, (acc, business) => {
       const transactions = _.filter(investments, { businessId: _.get(business, "id") });
-      let businessSummary = _.pick(business, ["id", "name"]);
+      let businessSummary = _.pick(business, ["id", "name", "investmentPeriod", "paybackPeriod", "irr"]);
 
       _.set(businessSummary, "investedAmount", _.sumBy(transactions, "amount"));
       _.set(businessSummary, "transactions", transactions);
