@@ -25,6 +25,18 @@ module.exports = {
       type: "string",
       maxLength: 1024
     },
+    investmentPeriod: {
+      columnName: "investment_period",
+      type: "integer"
+    },
+    paybackPeriod: {
+      columnName: "payback_period",
+      type: "integer"
+    },
+    irr: {
+      columnName: "irr",
+      type: "float"
+    },
     createdAt: {
       columnName: "created_at",
       type: "datetime"
