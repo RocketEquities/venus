@@ -14,7 +14,7 @@ import { businesses } from '../../actions/BusinessActions.js';
 
 class Investment extends React.Component {
   componentWillMount() {
-    this.props.dispatch(businesses())
+    this.props.dispatch(businesses());
   }
 
   constructor(props) {
@@ -39,7 +39,6 @@ class Investment extends React.Component {
               <InvestmentItem key={business_response.id} {...business_response} />
             )}
           </div>
-          <Link to="/businesses/1">test</Link>
         </div>
       </div>
     );

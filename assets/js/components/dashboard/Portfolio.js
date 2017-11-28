@@ -1,7 +1,15 @@
 import React from 'react';
 import Profile from '../partial/Profile.js';
 import LineChart from '../partial/LineChart.js';
+import { connect } from 'react-redux';
 
+import { portfolio } from '../../actions/BusinessActions.js';
+
+@connect((store) => {
+  return {
+    portfolio_widget: store.business.portfolio_widget
+  };
+})
 class Portfolio extends React.Component {
   constructor(props) {
   	super(props);
@@ -11,7 +19,9 @@ class Portfolio extends React.Component {
   }
 
   componentWillMount() {
+    // window.location.reload();
     this.getChartData();
+    this.props.dispatch(portfolio());
   }
 
   getChartData() {
@@ -46,11 +56,26 @@ class Portfolio extends React.Component {
   }
 
   render() {
+    var investmentLinks = "";
+
+    if(this.props.portfolio_widget.investments != undefined) {
+      investmentLinks = this.props.portfolio_widget.investments.map(i_links =>
+                        <li key={i_links.id}>
+                          <div className="investment-list">
+                            <h4>{i_links.name}</h4>
+                            <h4>i_links.name</h4>
+                            <span>{JSON.stringify(i_links.transactions)}</span>
+                          </div>
+                        </li>)
+
+      console.log("investmentLinks: ", investmentLinks);
+    }
+
 	  return (
 	    <div className="portfolio">
-        
-        <Profile />
+        {investmentLinks}
 
+        <Profile />
         <div className="portfolio-detail">
           <div className="profit-graph">
             <div className="graph-draw">

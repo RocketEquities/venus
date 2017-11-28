@@ -32,6 +32,7 @@ class InvestmentDetail extends React.Component {
   }
 
   componentWillMount() {
+    // window.location.reload();
     this.props.dispatch(business_detail(this.props.match.params.id));
   }
 
