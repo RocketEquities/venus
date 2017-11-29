@@ -11,7 +11,7 @@ module.exports = {
 //==============================================================================
 
 function index(req, res) {
-  const userId = _.get(req, "user.id");
+  const userId = _.toInteger(_.get(req, "user.id"));
 
   function validate(next) {
     const err = (!userId) ? new Exception.NotFound() : null;
@@ -33,10 +33,22 @@ function index(req, res) {
     Business.find().where({ id: businessIds }).exec(next);
   }
 
+  function getProfits(businesses, next) {
+    const businessIds = _.map(businesses, "id");
+    if (_.isEmpty(businessIds)) {
+      return next(null, []);
+    }
+
+    Profit.find().where({ userId: userId, businessId: businessIds })
+                 .sort("expectedAt ASC")
+                 .exec(next);
+  }
+
 
   function done(err, result) {
     const investments = _.get(result, "investments") || [];
     const businesses = _.get(result, "businesses") || [];
+    const profits = _.get(result, "profits") || [];
 
     if (err) {
       return res.apiError(err);
@@ -44,10 +56,13 @@ function index(req, res) {
 
     const investmentSummary = _.reduce(businesses, (acc, business) => {
       const transactions = _.filter(investments, { businessId: _.get(business, "id") });
+      const _profits = _.filter(profits, { businessId: _.get(business, "id") });
+
       let businessSummary = _.pick(business, ["id", "name", "investmentPeriod", "paybackPeriod", "irr"]);
 
       _.set(businessSummary, "investedAmount", _.sumBy(transactions, "amount"));
       _.set(businessSummary, "transactions", transactions);
+      _.set(businessSummary, "profits", _profits);
 
       acc.push(businessSummary);
       return acc;
@@ -70,7 +85,8 @@ function index(req, res) {
       async.autoInject({
         validate: validate,
         investments: getInvestments,
-        businesses: getBusinesses
+        businesses: getBusinesses,
+        profits: getProfits
       }, done);
     }
   });
