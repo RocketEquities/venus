@@ -21,8 +21,7 @@ module.exports = {
     },
     actualAmount: {
       columnName: "actual_amount",
-      type: "float",
-      required: true
+      type: "float"
     },
     expectedAmount: {
       columnName: "expected_amount",
