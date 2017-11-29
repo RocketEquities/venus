@@ -10,8 +10,8 @@ module.exports = {
 //==============================================================================
 
 function index(req, res) {
-  const userId = _.get(req, "user.id");
-  const businessId = req.param("business_id");
+  const userId = _.toInteger(_.get(req, "user.id"));
+  const businessId = _.toInteger(req.param("business_id"));
 
   if (!userId || !businessId) {
     return res.apiError(new Exception.NotFound());
