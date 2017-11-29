@@ -19,8 +19,8 @@
 
 module.exports.policies = {
 
-  // "*": ["sessionAuth"],
-  // "Home": true,
-  // "User": true
+  "*": ["sessionAuth"],
+  "Home": true,
+  "User": true
 
 };
