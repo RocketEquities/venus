@@ -141,6 +141,10 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
+  "GET    /businesses/:business_id/projections" : "Projection.index",
+
+  //----------------------------------------------------------------------------
+
   "GET    /portfolio"     : "Portfolio.index",
   "GET    /portfolio/:id" : "Portfolio.show",
 
