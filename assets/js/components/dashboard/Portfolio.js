@@ -2,6 +2,7 @@ import React from 'react';
 import Profile from '../partial/Profile.js';
 import LineChart from '../partial/LineChart.js';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { portfolio } from '../../actions/BusinessActions.js';
 
@@ -25,12 +26,26 @@ class Portfolio extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.portfolio_chart_ready) {
+      var investmentLinks = '';
+      var currentinvestement = this.props.match.params.id;
+      // var chartAmount = nextProps.business_detail_response_investment.map(a => Math.floor(a.amount));
+
+      if(nextProps.portfolio_widget.investments != undefined) {
+        investmentLinks = nextProps.portfolio_widget.investments.filter(function( obj ) {
+          return obj.id == currentinvestement;
+        });
+      }
+
+      var actualProfit = investmentLinks[0].profits.map(a => a.actualAmount);
+      var expectedProfit = investmentLinks[0].profits.map(a => a.expectedAmount);
+      var chartLabel = investmentLinks[0].profits.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
+
       this.setState({
       chartData: {
-        labels: [['March', '2017'], ['March', '2018'], ['March', '2019'], ['March', '2020'], ['March', '2021'], ['March', '2022'], ['March', '2023']],
+        labels: chartLabel,
         datasets: [
         {
-          data: [0, 200, 440, 600, 680, 702, 720],
+          data: expectedProfit,
           borderColor: '#4990E2',
           pointBackgroundColor: '#92E2F8',
           pointBorderColor: '#4990E2',
@@ -40,7 +55,7 @@ class Portfolio extends React.Component {
         },
 
         {
-          data: [0, 380, 510, 620, 690, 789, 730],
+          data: actualProfit, //actual
           borderColor: '#F6A623',
           pointBorderColor: '#F6A623',
           pointBackgroundColor: '#FFC99A',
@@ -61,6 +76,9 @@ class Portfolio extends React.Component {
     var currentinvestement = this.props.match.params.id;
     var inv_name = '';
     var inv_history = '';
+    var inv_ip = '';
+    var inv_pr = '';
+    var inv_irr = '';
 
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.filter(function( obj ) {
@@ -70,9 +88,10 @@ class Portfolio extends React.Component {
 
     if(investmentLinks[0] != undefined) {
       inv_name = investmentLinks[0].name;
-      inv_history = investmentLinks[0].transactions.map(transaction_history => <tr key={transaction_history.id}><td>{transaction_history.amount}</td><td>{transaction_history.updatedAt}</td></tr>);
-
-
+      inv_history = investmentLinks[0].transactions.map(transaction_history => <tr key={transaction_history.id}><td>{transaction_history.amount}</td><td>{moment(transaction_history.updatedAt).format('MM-DD-YYYY')}</td></tr>);
+      inv_ip = investmentLinks[0].investmentPeriod;
+      inv_pr = investmentLinks[0].paybackPeriod;
+      inv_irr = investmentLinks[0].irr;
     }
 
     const portfoliograph = this.props.portfolio_chart_ready ? <LineChart chartData={this.state.chartData} height="300"/> : "";
@@ -97,15 +116,15 @@ class Portfolio extends React.Component {
             </div>
             <div className="graph-info">
               <div className="irr">
-                <h5>7.1%</h5>
+                <h5>{inv_irr}%</h5>
                 IRR
               </div>
               <div className="investment-g">
-                <h5>20 yrs.</h5>
+                <h5>{inv_ip} yrs.</h5>
                 INVESTMENT PERIOD
               </div>
               <div className="payback">
-              <h5>4 yrs.</h5>
+              <h5>{inv_pr} yrs.</h5>
                 PAYBACK PERIOD
               </div>
             </div>
@@ -119,8 +138,8 @@ class Portfolio extends React.Component {
                   <th>DATE INVESTED</th>
                 </tr>
                 {inv_history}
-                </tbody>
-              </table>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

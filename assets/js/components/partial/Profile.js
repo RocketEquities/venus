@@ -19,6 +19,10 @@ class Profile extends React.Component {
   	super(props);
   }
 
+  resfreshPage() {
+    history.go(0);
+  }
+
   render() {
     var investmentLinks = "";
     var totalInvestedAmount = "";
@@ -26,7 +30,7 @@ class Profile extends React.Component {
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.map(i_links =>
                         <li key={i_links.id}>
-                          <NavLink exact to={'/portfolio/' + i_links.id} activeClassName="active-link">
+                          <NavLink exact to={'/portfolio/' + i_links.id} onClick={this.resfreshPage.bind(this)} activeClassName="active-link">
                             <i className="fa fa-chevron-right" aria-hidden="true"></i>
                             <div className="investment-list">
                               <h4>{i_links.name}</h4>
@@ -38,6 +42,8 @@ class Profile extends React.Component {
       totalInvestedAmount = this.props.portfolio_widget.totalInvestedAmount.toLocaleString();
     }
 
+    var data_root = document.getElementById('root');
+    var username = data_root.getAttribute('data-name');
 
 	  return (
 	    <div className="profile">
@@ -45,7 +51,7 @@ class Profile extends React.Component {
           <Link className="icon settings" to="/settings"></Link>
           <span className="icon alert"></span>
           <div className="profile-photo"></div>
-          <h4>Welcome back {this.props.portfolio_widget.name}!</h4>
+          <h4>Welcome back <span>{username}</span>!</h4>
           <div className="separator"></div>
           <div className="ci">{totalInvestedAmount} USD</div>
           <h6>Total Current Investments</h6>

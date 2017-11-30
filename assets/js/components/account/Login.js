@@ -32,8 +32,7 @@ class Login extends React.Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.login_authorized) {
-        //redirect to homepage
-        this.props.history.push('/');
+        location.href = '/';
       } else {
         toast(nextProps.login_response.message);
         this.setState({toastType: 'error'});
@@ -53,7 +52,6 @@ class Login extends React.Component {
 
     } else {
       this.props.dispatch(login(this.state.input.email, this.state.input.password));
-      
     }
   }
 

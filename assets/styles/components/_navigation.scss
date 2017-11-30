@@ -12,6 +12,9 @@ nav {
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box; 
 
+	position: relative;
+  z-index: 1000;
+
 	a {
 		color: $gray-nav-text;
 		font-family: $input-font;

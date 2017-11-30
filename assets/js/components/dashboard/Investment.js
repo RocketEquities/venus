@@ -22,7 +22,6 @@ class Investment extends React.Component {
   }
 
   render() {
-
     return (
       <div className="investment">
         <Profile />
