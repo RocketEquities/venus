@@ -91,9 +91,6 @@ class InvestmentDetail extends React.Component {
                   <div className="irr">
                     IRR <span>{this.props.business_detail_response.irr}</span>
                   </div>
-                  <div className="em">
-                    Equity Multiple <span>{this.props.business_detail_response.em}</span>
-                  </div>
                   <div className="ip">
                     Investment Period <span>{this.props.business_detail_response.ip}</span>
                   </div>

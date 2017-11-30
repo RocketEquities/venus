@@ -37,7 +37,7 @@ export function portfolio() {
     dispatch({type: "GET_PORTFOLIO"});
 
     // actual url is "/portfolio"
-    axios.get("http://www.mocky.io/v2/5a17cfc52c00005715596c29")
+    axios.get("http://www.mocky.io/v2/5a1d89da2e0000fc3748b8e1")
       .then((response) => {
         dispatch({type: "GET_PORTFOLIO_FULFILLED", payload: response.data})
       })

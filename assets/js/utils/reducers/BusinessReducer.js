@@ -3,6 +3,7 @@ export default function reducer(state={
     business_detail_response: {},
     business_detail_response_investment: [],
     chart_ready: false,
+    portfolio_chart_ready: false,
     portfolio_widget: {},
     error: {}
   }, action) {
@@ -38,7 +39,7 @@ export default function reducer(state={
       }
 
       case "GET_PORTFOLIO_FULFILLED": {
-        return {...state, fetching: false, portfolio_widget: action.payload.data}
+        return {...state, fetching: false, portfolio_widget: action.payload.data, portfolio_chart_ready: true}
 
         console.log(portfolio_widget);
       }
