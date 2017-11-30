@@ -8,7 +8,7 @@ import reducer from './reducers';
 
 
 //remove createLogger() after dev
-const middleware = applyMiddleware(promise(), thunk, createLogger());
+const middleware = applyMiddleware(promise(), thunk);
 
 export default createStore(reducer, middleware);
 

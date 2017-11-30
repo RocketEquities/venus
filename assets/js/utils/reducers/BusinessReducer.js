@@ -27,7 +27,7 @@ export default function reducer(state={
       }
 
       case "GET_BUSINESSES_DETAIL_FULFILLED": {
-        return {...state, fetching: false, business_detail_response: action.payload.data.business, business_detail_response_investment: action.payload.data.investments, chart_ready: true}
+        return {...state, fetching: false, business_detail_response: action.payload.data, chart_ready: true}
       }
 
       case "GET_BUSINESSES_DETAIL_REJECTED": {
@@ -40,8 +40,6 @@ export default function reducer(state={
 
       case "GET_PORTFOLIO_FULFILLED": {
         return {...state, fetching: false, portfolio_widget: action.payload.data, portfolio_chart_ready: true}
-
-        console.log(portfolio_widget);
       }
 
       case "GET_PORTFOLIO_REJECTED": {

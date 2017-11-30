@@ -5,12 +5,12 @@ import BarChart from '../partial/BarChart.js';
 import Modal from 'react-modal';
 import moment from 'moment';
 
-import { business_detail } from '../../actions/BusinessActions.js';
+import { business_detail, businesses } from '../../actions/BusinessActions.js';
 
 @connect((store) => {
   return {
+    business_response: store.business.business_response,
     business_detail_response: store.business.business_detail_response,
-    business_detail_response_investment: store.business.business_detail_response_investment,
     chart_ready: store.business.chart_ready
   };
 })
@@ -32,14 +32,17 @@ class InvestmentDetail extends React.Component {
   }
 
   componentWillMount() {
-    // window.location.reload();
     this.props.dispatch(business_detail(this.props.match.params.id));
+    
+    if(this.props.business_response.length == 0) {
+      this.props.dispatch(businesses());
+    }
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.chart_ready) {
-      var chartAmount = nextProps.business_detail_response_investment.map(a => Math.floor(a.amount));
-      var chartLabel = nextProps.business_detail_response_investment.map(a => [moment(a.createdAt).format('MMMM').toUpperCase(), moment(a.createdAt).format('YYYY').toUpperCase()]);
+      var chartAmount = nextProps.business_detail_response.projections.map(a => Math.floor(a.expectedProfit));
+      var chartLabel = nextProps.business_detail_response.projections.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
 
       this.setState({
         chartData: {
@@ -49,6 +52,9 @@ class InvestmentDetail extends React.Component {
             data: chartAmount,
 
             backgroundColor: [
+              '#4990E2',
+              '#4990E2',
+              '#4990E2',
               '#4990E2',
               '#4990E2',
               '#4990E2',
@@ -78,27 +84,51 @@ class InvestmentDetail extends React.Component {
   render() {
     const mygraph = this.props.chart_ready ? <BarChart chartData={this.state.chartData} height='300' redraw /> : "";
 
+    var businessdetails = '';
+    var currentbusiness = this.props.match.params.id;
+
+    var businessname = '';
+    var businessoverview = '';
+    var businessirr = '';
+    var businessip = '';
+    var businesspp = '';
+    var businesscapital = '';
+
+    if(this.props.business_response != undefined) {
+      businessdetails = this.props.business_response.filter(function( obj ) {
+        return obj.id == currentbusiness;
+      });
+    }
+
+    if(businessdetails[0] != undefined) {
+      businessname = businessdetails[0].name;
+      businessoverview = businessdetails[0].overview;
+      businessirr = businessdetails[0].irr;
+      businessip = businessdetails[0].investmentPeriod;
+      businesspp = businessdetails[0].paybackPeriod;
+    }
+
 	  return (
 	    <div className="investment-detail">
         <div className="i-title">
           
               <div className="item-details">
-                <h3>{this.props.business_detail_response.name}</h3>
+                <h3>{businessname}</h3>
                 <div className="separator"></div>
-                <h6>Capital Requirement:</h6>
-                <div className="requirement">{this.props.business_detail_response.capitalreq}</div>
+                <h6>Capital Requirement:{businesscapital}</h6>
+                <div className="requirement">--</div>
                 <div className="comp">
                   <div className="irr">
-                    IRR <span>{this.props.business_detail_response.irr}</span>
+                    IRR <span>{businessirr}%</span>
                   </div>
                   <div className="ip">
-                    Investment Period <span>{this.props.business_detail_response.ip}</span>
+                    Investment Period <span>{businessip}yrs.</span>
                   </div>
                   <div className="pr">
-                    Payback Period <span>{this.props.business_detail_response.pr}</span>
+                    Payback Period <span>{businesspp}yrs.</span>
                   </div>
                 </div>
-                <button name="invest-now" className="button" value={this.props.business_detail_response.id} onClick={this.openModal}>INVEST NOW</button>
+                <button name="invest-now" className="button" value={currentbusiness} onClick={this.openModal}>INVEST NOW</button>
               </div>
         </div>
         <div className="i-c">
@@ -106,7 +136,7 @@ class InvestmentDetail extends React.Component {
             <h2>Business Overview</h2>
             <div className="separator"></div>
             <div className="text">
-              {this.props.business_detail_response.overview}
+              {businessoverview}
             </div>
             
           </div>
@@ -132,10 +162,10 @@ class InvestmentDetail extends React.Component {
           <h4>Please provide us with the necessary information below. Our team of investment experts will contact you as soon as possible.</h4>
           <h4 className="mt">Business</h4>
           <div className="business-details">
-            <h2>{this.props.business_detail_response.name}</h2>
+            <h2>{businessname}</h2>
             <div className="separator"></div>
             <h4>Capital Requirement:</h4>
-            <h3>{this.props.business_detail_response.capitalreq}</h3>
+            <h3>{businesscapital}</h3>
           </div>
 
           <h4 className="mt">Amount to be invested</h4>

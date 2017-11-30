@@ -21,7 +21,6 @@ export function business_detail(id) {
 
     axios.get("/businesses/" + id + "/projections")
       .then((response) => {
-        console.log(response.data);
         dispatch({type: "GET_BUSINESSES_DETAIL_FULFILLED", payload: response.data})
       })
       .catch((err) => {

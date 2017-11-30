@@ -38,6 +38,16 @@ class Navigation extends React.Component {
     }
   }
 
+  navToggleLink() {
+    let hamburgerLink = document.querySelector('.hamburger-link');
+    if (hamburgerLink.style.display === 'block') {
+      hamburgerLink.style.display = 'none';
+    } else {
+      hamburgerLink.style.display = 'block';
+    }
+    history.go(0);
+  }
+
   render() {
     var currentid = '';
 
@@ -59,9 +69,9 @@ class Navigation extends React.Component {
 		      <div className="nav-narrow">
 		        <i className="fa fa-bars fa-2x" onClick={this.navToggle}></i>
 		        <div className="hamburger-link">
-		          <NavLink exact to={currentid} activeClassName="selected" onClick={(event) => { this.navToggle; this.resfreshPage.bind(this);}}>My Portfolio</NavLink>
-		          <NavLink exact to="/businesses" activeClassName="selected" onClick={this.navToggle}>Investments</NavLink>
-		          <NavLink exact to="/" onClick={this.logout.bind(this)} activeClassName="selected" onClick={this.navToggle}>Logout</NavLink>
+		          <NavLink exact to={currentid} activeClassName="selected" onClick={this.navToggleLink}>My Portfolio</NavLink>
+		          <NavLink exact to="/businesses" activeClassName="selected" onClick={this.navToggleLink}>Investments</NavLink>
+		          <NavLink exact to="/login" onClick={this.logout.bind(this)} activeClassName="selected">Logout</NavLink>
 		        </div>
 		      </div>
 		    </div>
