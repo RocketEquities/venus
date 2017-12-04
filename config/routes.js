@@ -32,20 +32,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  //-- commenting this out for now...
-  //-- "/*": function(req, res, next) {
-  //--    if (req.path.match(/\..*/g)) {
-  //--       return next();
-  //--    } else {
-  //--       return res.view("Home/index");
-  //--    }
-  //-- }
-
   "GET    /"        : "Home.index",
   "GET    /login"   : "Home.login",
 
   "POST   /login"   : "User.login",
   "POST   /logout"  : "User.logout",
+
+  //----------------------------------------------------------------------------
 
   "GET    /profile" : "Profile.show",
   "PUT    /profile" : "Profile.update",
@@ -53,94 +46,8 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
-  "GET    /businesses" : "Business.index",
-  /**
-  {
-    data: {
-      businesses: [
-        {
-          id: <id>,
-          name: <name>,
-          description: <description>,
-          overview: <overview>,
-          createdAt: <date>,
-          updatedAt: <date>
-        }
-      ]
-    }
-  }
-  */
-
-  //----------------------------------------------------------------------------
-
-  "GET    /businesses/:id" : "Business.show",
-  /**
-  {
-    data: {
-      business: {
-        id: <id>,
-        name: <name>,
-        description: <description>,
-        overview: <overview>,
-        createdAt: <date>,
-        updatedAt: <date>
-      }
-    }
-  }
-  */
-
-  //----------------------------------------------------------------------------
-
-  "GET    /businesses/:business_id/investments" : "Investment.index",
-  /**
-  {
-    data: {
-      business: {
-        id: <id>,
-        name: <name>,
-        description: <description>,
-        overview: <overview>
-      },
-      investments: [
-        {
-          id: <id>,
-          amount: <amount>,
-          createdAt: <date>,
-          updatedAt: <date>
-        }
-      ]
-    }
-  }
-  */
-
-  //----------------------------------------------------------------------------
-
-  "GET    /businesses/:business_id/profits" : "Profit.index",
-  /**
-  {
-    data: {
-      business: {
-        id: <id>,
-        name: <name>,
-        description: <description>,
-        overview: <overview>
-      },
-      profits: [
-        {
-          id: <id>,
-          actualAmount: <amount>,
-          expectedAmount: <amount>,
-          expectedAt: <date>,
-          createdAt: <date>,
-          updatedAt: <date>
-        }
-      ]
-    }
-  }
-  */
-
-  //----------------------------------------------------------------------------
-
+  "GET    /businesses"                          : "Business.index",
+  "GET    /businesses/:id"                      : "Business.show",
   "GET    /businesses/:business_id/projections" : "Projection.index",
 
   //----------------------------------------------------------------------------
@@ -150,12 +57,14 @@ module.exports.routes = {
 
   "GET    /settings"      : "Settings.index",
 
-
+  //----------------------------------------------------------------------------
   //-- temporary routes
+
   "POST   /users"     : "User.create",
   "PUT    /users/:id" : "User.update",
   "DELETE /users/:id" : "User.destroy"
 
+  //----------------------------------------------------------------------------
 
 
 };
