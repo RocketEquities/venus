@@ -73,7 +73,7 @@ module.exports = {
     const hashedPassword = sails.helpers.Util.toHash(clearPassword);
 
     if (!validator.isEmail(email) || _.isEmpty(clearPassword)) {
-      return done(Exception.Unauthorized());
+      return done(Exception.Unauthorized("Invalid email or password."));
     }
 
     User.findOneByEmail(email).exec((err, user) => {
@@ -82,7 +82,7 @@ module.exports = {
         return done(Exception.UnknownError());
       }
       if (_.isEmpty(user) || user.password !== hashedPassword) {
-        return done(Exception.Unauthorized());
+        return done(Exception.Unauthorized("Invalid email or password."));
       }
       done(null, user.toJSON());
     });
