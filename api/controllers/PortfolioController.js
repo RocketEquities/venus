@@ -20,7 +20,7 @@ function index(req, res) {
 
   function getInvestments(next) {
     Investment.find().where({ userId: userId })
-                     .sort("businessId ASC").sort("createdAt DESC")
+                     .sort("businessId ASC").sort("updatedAt DESC")
                      .exec(next);
   }
 
