@@ -4,6 +4,17 @@
     float: right;
 	}
 
+	.portfolio-empty {
+		float: right;
+		width: 67% !important;
+
+		h3 {
+			text-align: center !important;
+	    font-size: 12pt !important;
+	    text-transform: none !important;
+		}
+	}
+
 	.profit-graph, .transaction-history {
 		display: inline-block;
 		width: 100%;
@@ -170,8 +181,8 @@
 
 @media screen and (max-width: 64em) {
 	.portfolio {
-		.portfolio-detail, .profile {
-			width: 100%;
+		.portfolio-detail, .profile, .portfolio-empty {
+			width: 100% !important;
 		}
 
 		.profile {

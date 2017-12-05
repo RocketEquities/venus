@@ -21,14 +21,15 @@ class Portfolio extends React.Component {
   }
 
   componentWillMount() {
-   
+  }
+
+  componentDidMount() {
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.portfolio_chart_ready) {
       var investmentLinks = '';
       var currentinvestement = this.props.match.params.id;
-      // var chartAmount = nextProps.business_detail_response_investment.map(a => Math.floor(a.amount));
 
       if(nextProps.portfolio_widget.investments != undefined) {
         investmentLinks = nextProps.portfolio_widget.investments.filter(function( obj ) {
@@ -36,35 +37,39 @@ class Portfolio extends React.Component {
         });
       }
 
-      var actualProfit = investmentLinks[0].profits.map(a => a.actualAmount);
-      var expectedProfit = investmentLinks[0].profits.map(a => a.expectedAmount);
-      var chartLabel = investmentLinks[0].profits.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
+      var actualProfit = '';
+      var expectedProfit = '';
+      var chartLabel = '';
+
+      if(investmentLinks[0] != undefined) {
+        actualProfit = investmentLinks[0].profits.map(a => a.actualAmount);
+        expectedProfit = investmentLinks[0].profits.map(a => a.expectedAmount);
+        chartLabel = investmentLinks[0].profits.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
+      }
 
       this.setState({
       chartData: {
         labels: chartLabel,
         datasets: [
-        {
-          data: expectedProfit,
-          borderColor: '#4990E2',
-          pointBackgroundColor: '#92E2F8',
-          pointBorderColor: '#4990E2',
-          lineTension: 0,
-          fill: false,
-          borderWidth: 2
-        },
+          {
+            data: expectedProfit,
+            borderColor: '#4990E2',
+            pointBackgroundColor: '#92E2F8',
+            pointBorderColor: '#4990E2',
+            lineTension: 0,
+            fill: false,
+            borderWidth: 2
+          },
 
-        {
-          data: actualProfit, //actual
-          borderColor: '#F6A623',
-          pointBorderColor: '#F6A623',
-          pointBackgroundColor: '#FFC99A',
-          lineTension: 0,
-          fill: false,
-          borderWidth: 2
-
-          
-        }
+          {
+            data: actualProfit, //actual
+            borderColor: '#F6A623',
+            pointBorderColor: '#F6A623',
+            pointBackgroundColor: '#FFC99A',
+            lineTension: 0,
+            fill: false,
+            borderWidth: 2
+          }
         ]
       }
     });
@@ -79,6 +84,20 @@ class Portfolio extends React.Component {
     var inv_ip = '';
     var inv_pr = '';
     var inv_irr = '';
+    var showDetail = 'portfolio-detail';
+    var showEmpty = 'hide';
+
+
+    if(currentinvestement == undefined && this.props.portfolio_widget.investments != undefined) {
+      if(this.props.portfolio_widget.investments.length == 0){
+        showDetail = 'hide';
+        showEmpty = 'transaction-history portfolio-empty';
+      } else {
+        var portfolioid = "/portfolio/" + this.props.portfolio_widget.investments[0].id;
+        this.props.history.push(portfolioid);
+        history.go(0);
+      }
+    }
 
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.filter(function( obj ) {
@@ -96,10 +115,12 @@ class Portfolio extends React.Component {
 
     const portfoliograph = this.props.portfolio_chart_ready ? <LineChart chartData={this.state.chartData} height="300"/> : "";
 
+
+
 	  return (
 	    <div className="portfolio">
         <Profile />
-        <div className="portfolio-detail">
+        <div className={showDetail}>
           <div className="profit-graph">
             <div className="graph-draw">
               <h2>{inv_name}</h2>
@@ -141,6 +162,9 @@ class Portfolio extends React.Component {
               </tbody>
             </table>
           </div>
+        </div>
+        <div className={showEmpty}>
+          <h3>You currently have no investments!</h3>
         </div>
       </div>
 	  );
