@@ -10,8 +10,8 @@ class InvestmentItem extends React.Component {
     getInvestmentDetails(e){
         e.preventDefault();
 
-        this.props.history.push(location.pathname + '/' + this.props.id);
-        window.history.go(0);
+        window.location.href = location.pathname + '/' + this.props.id;
+        // window.history.go(0);
     }
 
     render() {
@@ -20,8 +20,6 @@ class InvestmentItem extends React.Component {
               <div className="item-details">
                 <h3>{this.props.name}</h3>
                 <div className="separator"></div>
-                <h6>Capital Requirement:</h6>
-                <div className="requirement"></div>
                 <div className="comp">
                   <div className="irr">
                     IRR <span>{this.props.irr}%</span>

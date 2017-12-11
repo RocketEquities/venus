@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import { logout } from '../../actions/AccountActions.js';
@@ -17,12 +17,12 @@ class Navigation extends React.Component {
   }
 
   resfreshPage() {
-    history.go(0);
+    // history.go(0);
   }
 
   logout() {
     this.props.dispatch(logout());
-    history.go(0);
+    // history.go(0);
   }
 
   componentWillReceiveProps(nextProps){
@@ -56,7 +56,7 @@ class Navigation extends React.Component {
 		        <div className="wide">
 		          <NavLink activeClassName="selected" to="/portfolio" >My Portfolio</NavLink>
 		          <NavLink activeClassName="selected" to="/businesses">Investments</NavLink>
-		          <NavLink activeClassName="selected" exact to="/" onClick={this.logout.bind(this)}>Logout</NavLink>
+		          <a href="/login" onClick={this.logout.bind(this)}>Logout</a>
 		        </div>
 		      </div>
 		      <div className="nav-narrow">
@@ -64,7 +64,7 @@ class Navigation extends React.Component {
 		        <div className="hamburger-link">
 		          <NavLink to="/portfolio" activeClassName="selected" onClick={this.navToggleLink}>My Portfolio</NavLink>
 		          <NavLink to="/businesses" activeClassName="selected" onClick={this.navToggleLink}>Investments</NavLink>
-		          <NavLink exact to="/" onClick={this.logout.bind(this)} activeClassName="selected">Logout</NavLink>
+		          <a href="/login" onClick={this.logout.bind(this)}>Logout</a>
 		        </div>
 		      </div>
 		    </div>
@@ -73,4 +73,4 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+export default withRouter(Navigation);

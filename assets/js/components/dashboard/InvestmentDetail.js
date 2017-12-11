@@ -115,8 +115,6 @@ class InvestmentDetail extends React.Component {
               <div className="item-details">
                 <h3>{businessname}</h3>
                 <div className="separator"></div>
-                <h6>Capital Requirement:{businesscapital}</h6>
-                <div className="requirement">--</div>
                 <div className="comp">
                   <div className="irr">
                     IRR <span>{businessirr}%</span>
@@ -164,8 +162,7 @@ class InvestmentDetail extends React.Component {
           <div className="business-details">
             <h2>{businessname}</h2>
             <div className="separator"></div>
-            <h4>Capital Requirement:</h4>
-            <h3>{businesscapital}</h3>
+            
           </div>
 
           <h4 className="mt">Amount to be invested</h4>

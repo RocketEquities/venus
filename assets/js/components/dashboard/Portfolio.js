@@ -16,17 +16,26 @@ class Portfolio extends React.Component {
   constructor(props) {
   	super(props);
     this.state = {
-      chartData: {}
+      chartData: {},
+      updateChart: false
     }
   }
 
   componentWillMount() {
+
   }
 
-  componentDidMount() {
+  reloadChart() {
+    return (
+      this.state.chartData
+    )
+
+    this.forceUpdate();
   }
+
 
   componentWillReceiveProps(nextProps){
+
     if(nextProps.portfolio_chart_ready) {
       var investmentLinks = '';
       var currentinvestement = this.props.match.params.id;
@@ -72,7 +81,7 @@ class Portfolio extends React.Component {
           }
         ]
       }
-    });
+    }, this.forceUpdate());
     }
   }
 
@@ -95,7 +104,7 @@ class Portfolio extends React.Component {
       } else {
         var portfolioid = "/portfolio/" + this.props.portfolio_widget.investments[0].id;
         this.props.history.push(portfolioid);
-        history.go(0);
+        // history.go(0);
       }
     }
 
@@ -113,9 +122,8 @@ class Portfolio extends React.Component {
       inv_irr = investmentLinks[0].irr;
     }
 
-    const portfoliograph = this.props.portfolio_chart_ready ? <LineChart chartData={this.state.chartData} height="300"/> : "";
 
-
+    const portfoliograph = (this.props.portfolio_chart_ready) ? <LineChart chartData={this.reloadChart.bind(this)} height="300"/> : "";
 
 	  return (
 	    <div className="portfolio">

@@ -10,18 +10,18 @@ const DashboardLayout = ({component: Component, ...rest}) => {
 
   if(username == '') {
     window.location.href = '/login';
-  }
-
-  return (
+  } else {
+    return (
     <Route {...rest} render={matchProps => (
       <div className="dashboard">
-      	<Navigation />
-      	<div className="container">
-      		<Component {...matchProps} />
-      	</div>
+        <Navigation />
+        <div className="container">
+          <Component {...matchProps} />
+        </div>
       </div>
     )} />
   )
+  }
 };
 
 export default DashboardLayout;

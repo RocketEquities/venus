@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { portfolio } from '../../actions/BusinessActions.js';
@@ -17,10 +17,12 @@ class Profile extends React.Component {
 
   constructor(props) {
   	super(props);
+
+    
   }
 
-  resfreshPage() {
-    history.go(0);
+  resfreshPage(i) {
+    // history.go(0);
   }
 
   render() {
@@ -30,13 +32,13 @@ class Profile extends React.Component {
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.map(i_links =>
                         <li key={i_links.id}>
-                          <NavLink exact to={'/portfolio/' + i_links.id} onClick={this.resfreshPage.bind(this)} activeClassName="active-link">
+                          <a href={'/portfolio/' + i_links.id} id={i_links.id} onClick={this.resfreshPage.bind(this, i_links.id)} activeClassName="active-link">
                             <i className="fa fa-chevron-right" aria-hidden="true"></i>
                             <div className="investment-list">
                               <h4>{i_links.name}</h4>
                               <h5>Invested Amount: <span>{i_links.investedAmount.toLocaleString()} USD</span></h5>
                             </div>
-                          </NavLink>
+                          </a>
                         </li>)
 
       totalInvestedAmount = this.props.portfolio_widget.totalInvestedAmount.toLocaleString();
@@ -59,7 +61,7 @@ class Profile extends React.Component {
         <div className="my-portfolio">
           <h3>My portfolio</h3>
           <div className="line"></div>
-          <ul>
+          <ul id="investment-list">
             {investmentLinks}
           </ul>
         </div>
@@ -68,4 +70,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

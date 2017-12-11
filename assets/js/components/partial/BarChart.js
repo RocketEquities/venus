@@ -38,6 +38,7 @@ class BarChart extends React.Component {
   			<Bar
 					data={this.state.chartData}
 					height={parseInt(this.props.height)}
+					redraw={true}
 					options={{
 						chartArea: {
 				      backgroundColor: 'rgba(187, 201, 222, 0.19)'
