@@ -56,6 +56,7 @@ module.exports.routes = {
   "GET    /portfolio/:id" : "Portfolio.show",
 
   "GET    /settings"      : "Settings.index",
+  "POST   /inquiries"     : "Inquiry.create",
 
   //----------------------------------------------------------------------------
   //-- temporary routes
