@@ -19,7 +19,6 @@ function show(req, res) {
 function update(req, res) {
   let params = {
     email: req.param("email"),
-    password: req.param("password"),
     firstName: req.param("firstName"),
     lastName: req.param("lastName"),
     picture: req.param("picture")
