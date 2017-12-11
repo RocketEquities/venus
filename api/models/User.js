@@ -30,7 +30,7 @@ module.exports = {
       required: true,
       minLength: 2,
       maxLength: 64,
-      alphanumeric: true
+      is: /^[a-zA-Z0-9\-\s]+$/
     },
     lastName: {
       columnName: "last_name",
@@ -38,7 +38,7 @@ module.exports = {
       required: true,
       minLength: 2,
       maxLength: 64,
-      alphanumeric: true
+      is: /^[a-zA-Z0-9\-\s]+$/
     },
     picture: {
       columnName: "picture",
