@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, history } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
+
+import { update_profile } from '../../actions/BusinessActions.js';
 
 
 const CloseButton = ({ closeToast }) => (
@@ -10,14 +13,45 @@ const CloseButton = ({ closeToast }) => (
   />
 );
 
+@connect((store) => {
+  return {
+    business_response: store.business.business_response
+  };
+})
+
 class Settings extends React.Component {
   constructor(props) {
+    var data_root = document.getElementById('root');
+    var firstName = data_root.getAttribute('data-name');
+    var lastName = data_root.getAttribute('data-lastname');
+    var email = data_root.getAttribute('data-email');
+
     super(props);
-    this.notify = this.notify.bind(this);
+    this.state = {
+      input: {firstName: firstName, lastName: lastName, email: email},
+      toastStyle: ''
+    }
+
+    this.updateSettings = this.updateSettings.bind(this);
+
   }
 
-  notify() {
-    toast("Hellooo");
+  updateSettings() {
+    if(this.state.input.email == '' || this.state.input.firstName == '' || this.state.input.lastName == '') {
+      this.setState({toastStyle: 'error'}, toast('All fields must not be empty.'));
+    } else {
+      this.props.dispatch(update_profile(this.state.input.email, this.state.input.firstName, this.state.input.lastName));
+      this.setState({toastStyle: 'success'}, toast('Profile successfully updated!'));
+    }
+  }
+
+  handleChange(property, event) {
+    const input = {...this.state.input};
+
+    input[property] = event.target.value;
+
+
+    this.setState({input: input});
   }
 
   render() {
@@ -40,7 +74,7 @@ class Settings extends React.Component {
               newestOnTop={false}
               closeOnClick
               pauseOnHover
-              toastClassName="error"
+              toastClassName={this.state.toastStyle}
               newestOnTop={true}
 
             />
@@ -59,11 +93,11 @@ class Settings extends React.Component {
             </div>
             <div className="profile-form">
               <label>First Name</label>
-              <input type="text" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="First Name" />
+              <input type="text" name="firstName" value={this.state.input.firstName} onChange={this.handleChange.bind(this, 'firstName')} className="input-text" placeholder="First Name" />
               <label>Last Name</label>
-              <input type="text" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="Last Name" />
+              <input type="text" name="lastName" value={this.state.input.lastName} onChange={this.handleChange.bind(this, 'lastName')} className="input-text" placeholder="Last Name" />
               <label>Email</label>
-              <input type="email" name="email" ref={node => {this.email = node;}} className="input-text" placeholder="Email" />
+              <input type="email" name="email" value={this.state.input.email} onChange={this.handleChange.bind(this, 'email')} className="input-text" placeholder="Email" />
             </div>
             <div className="profile-form">
               <label>Password</label>
@@ -71,7 +105,7 @@ class Settings extends React.Component {
               <Link to="/changepassword" className="sub-link">Change Password</Link>
             </div>
           </div>
-          <input type="button" name="save" value="SAVE CHANGES"  onClick={this.notify} className="button"/>
+          <input type="button" name="save" value="SAVE CHANGES"  onClick={this.updateSettings} className="button"/>
           <input type="button" name="cancel" value="CANCEL" className="button secondary"/>
         </div>
       </div>

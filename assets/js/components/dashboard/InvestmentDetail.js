@@ -4,14 +4,24 @@ import { connect } from 'react-redux';
 import BarChart from '../partial/BarChart.js';
 import Modal from 'react-modal';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
 
-import { business_detail, businesses } from '../../actions/BusinessActions.js';
+import { business_detail, businesses, send_inquiry } from '../../actions/BusinessActions.js';
+
+const CloseButton = ({ closeToast }) => (
+  <i
+    className="toastify__close fa fa-times"
+    onClick={closeToast}
+  />
+);
 
 @connect((store) => {
   return {
     business_response: store.business.business_response,
     business_detail_response: store.business.business_detail_response,
-    chart_ready: store.business.chart_ready
+    chart_ready: store.business.chart_ready,
+    inquiry_success: store.business.inquiry_success,
+    inquiry_fulfilled: store.business.inquiry_fulfilled
   };
 })
 
@@ -22,7 +32,11 @@ class InvestmentDetail extends React.Component {
       chartData: {},
       modalIsOpen: false,
       chartAmount_: [],
-      chartReady: false
+      chartReady: false,
+      input: {amt: 0, message: ''},
+      toastClass: 'error',
+      inquiry_success: false,
+      toastMessage: ''
 
     }
 
@@ -39,7 +53,34 @@ class InvestmentDetail extends React.Component {
     }
   }
 
+  handleChange(property, event) {
+      const input = {...this.state.input};
+      const re = /^[0-9\b]+$/;
+
+      if (property == "amt") {
+        if (event.target.value == '' || re.test(event.target.value)) {
+          input[property] = event.target.value;
+        }
+      } else {
+        input[property] = event.target.value;
+      }
+
+      this.setState({input: input});
+    }
+
   componentWillReceiveProps(nextProps){
+    console.log(nextProps.inquiry_fulfilled, nextProps.inquiry_success);
+
+    if(nextProps.inquiry_fulfilled) {
+      if(nextProps.inquiry_success) {
+        this.setState({toastClass: 'success'});
+        toast('Your inquiry was sent. Thank you!');
+      } else {
+        this.setState({toastClass: 'error'});
+        toast('Something went wrong. Please try again.');
+      }
+    } 
+
     if(nextProps.chart_ready) {
       var chartAmount = nextProps.business_detail_response.projections.map(a => Math.floor(a.expectedProfit));
       var chartLabel = nextProps.business_detail_response.projections.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
@@ -78,6 +119,13 @@ class InvestmentDetail extends React.Component {
   }
 
   closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  sendInquiry() {
+    this.props.dispatch(send_inquiry(this.props.match.params.id, this.state.input.amt, this.state.input.message));
+
+    this.setState({input: {amt: 0, message: ''}});
     this.setState({modalIsOpen: false});
   }
 
@@ -166,11 +214,25 @@ class InvestmentDetail extends React.Component {
           </div>
 
           <h4 className="mt">Amount to be invested</h4>
-          <input type="text" name="amt" ref={node => {this.amt = node;}} className="input-text" placeholder="" />
+          <input type="text" name="amt" value={this.state.input.amt} onChange={this.handleChange.bind(this, 'amt')} className="input-text" placeholder="" />
           <h4 className="mt">Message</h4>
-          <textarea rows="4" cols="50" name="amt" ref={node => {this.amt = node;}} className="input-text text-area" placeholder="e.g. I’m interested in investing."></textarea>
-          <input type="button" name="send" value="SEND INQUIRY" className="button"/>
+          <textarea rows="4" cols="50" name="message" value={this.state.input.message} onChange={this.handleChange.bind(this, 'message')} className="input-text text-area" placeholder="e.g. I’m interested in investing."></textarea>
+          <input type="button" name="send" value="SEND INQUIRY" onClick={this.sendInquiry.bind(this)} className="button"/>
         </Modal>
+
+        <ToastContainer 
+              position="top-center"
+              closeButton={<CloseButton />}
+              type="default"
+              autoClose={4000}
+              hideProgressBar={true}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnHover
+              toastClassName={this.state.toastClass}
+              newestOnTop={true}
+
+            />
 
       </div>
 	  );

@@ -103,8 +103,9 @@ class Portfolio extends React.Component {
         showEmpty = 'transaction-history portfolio-empty';
       } else {
         var portfolioid = "/portfolio/" + this.props.portfolio_widget.investments[0].id;
-        this.props.history.push(portfolioid);
+        // this.props.history.push(portfolioid);
         // history.go(0);
+         window.location.href = portfolioid;
       }
     }
 

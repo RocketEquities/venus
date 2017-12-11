@@ -1,4 +1,4 @@
-<div id="root" data-name=<%=req.session.passport == undefined ? '' : req.session.passport.user.firstName%>></div>
+<div id="root" data-name=<%=req.session.passport == undefined ? '' : req.session.passport.user.firstName%> data-lastname=<%=req.session.passport == undefined ? '' : req.session.passport.user.lastName%> data-email=<%=req.session.passport == undefined ? '' : req.session.passport.user.email%>></div>
 
 
 

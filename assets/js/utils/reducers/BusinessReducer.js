@@ -5,7 +5,9 @@ export default function reducer(state={
     chart_ready: false,
     portfolio_chart_ready: false,
     portfolio_widget: {},
-    error: {}
+    error: {},
+    inquiry_success: false,
+    inquiry_fulfilled: false
   }, action) {
 
     switch (action.type) {
@@ -44,6 +46,22 @@ export default function reducer(state={
 
       case "GET_PORTFOLIO_REJECTED": {
         return {...state, fetching: false, error: action.payload}
+      }
+
+      case "SEND_INQUIRY": {
+        return {...state, fetching: true}
+      }
+
+      case "SEND_INQUIRY_FULFILLED": {
+        if(Object.keys(action.payload.data.inquiry).length === 0) {
+          return {...state, fetching: false, inquiry_success: false, inquiry_fulfilled: true}
+        } else {
+          return {...state, fetching: false, inquiry_success: true, inquiry_fulfilled: true}
+        }
+      }
+
+      case "SEND_INQUIRY_REJECTED": {
+        return {...state, fetching: false, inquiry_success: false, inquiry_fulfilled: true}
       }
     }
 

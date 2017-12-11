@@ -23,6 +23,8 @@ class Profile extends React.Component {
 
   resfreshPage(i) {
     // history.go(0);
+    
+    window.location.href = '/portfolio/' + i;
   }
 
   render() {
@@ -32,13 +34,13 @@ class Profile extends React.Component {
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.map(i_links =>
                         <li key={i_links.id}>
-                          <a href={'/portfolio/' + i_links.id} id={i_links.id} onClick={this.resfreshPage.bind(this, i_links.id)} activeClassName="active-link">
+                          <NavLink exact to={'/portfolio/' + i_links.id} id={i_links.id} onClick={this.resfreshPage.bind(this, i_links.id)} activeClassName="active-link">
                             <i className="fa fa-chevron-right" aria-hidden="true"></i>
                             <div className="investment-list">
                               <h4>{i_links.name}</h4>
                               <h5>Invested Amount: <span>{i_links.investedAmount.toLocaleString()} USD</span></h5>
                             </div>
-                          </a>
+                          </NavLink>
                         </li>)
 
       totalInvestedAmount = this.props.portfolio_widget.totalInvestedAmount.toLocaleString();

@@ -43,3 +43,35 @@ export function portfolio() {
       })
   }
 }
+
+export function send_inquiry(id, amt, message) {
+  return function(dispatch) {
+    dispatch({type: "SEND_INQUIRY"});
+
+    var data = {"businessId" : id, "amount" : amt, "message" : message}
+
+    axios.post("/inquiries", data)
+      .then((response) => {
+        dispatch({type: "SEND_INQUIRY_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "SEND_INQUIRY_REJECTED", payload: err})
+      })
+  }
+}
+
+export function update_profile(email, firstName, lastName) {
+  return function(dispatch) {
+    dispatch({type: "UPDATE_PROFILE"});
+
+    var data = {"email" : email, "firstName" : firstName, "lastName" : lastName}
+
+    axios.put("/profile", data)
+      .then((response) => {
+        dispatch({type: "UPDATE_PROFILE_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "UPDATE_PROFILE_REJECTED", payload: err})
+      })
+  }
+}
