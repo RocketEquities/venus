@@ -47,7 +47,18 @@ class Profile extends React.Component {
     }
 
     var data_root = document.getElementById('root');
-    var username = data_root.getAttribute('data-name');
+    var user = data_root.getAttribute('data-name');
+
+    var dataObj = '';
+    var firstName = '';
+
+    if(user != '') {
+      dataObj = JSON.parse(user);
+    }
+
+    if(dataObj != '') {
+      firstName = dataObj.firstName;
+    }
 
 	  return (
 	    <div className="profile">
@@ -55,7 +66,7 @@ class Profile extends React.Component {
           <Link className="icon settings" to="/settings"></Link>
           <span className="icon alert"></span>
           <div className="profile-photo"></div>
-          <h4>Welcome back <span>{username}</span>!</h4>
+          <h4>Welcome back <span>{firstName}</span>!</h4>
           <div className="separator"></div>
           <div className="ci">{totalInvestedAmount} USD</div>
           <h6>Total Current Investments</h6>

@@ -22,9 +22,23 @@ const CloseButton = ({ closeToast }) => (
 class Settings extends React.Component {
   constructor(props) {
     var data_root = document.getElementById('root');
-    var firstName = data_root.getAttribute('data-name');
-    var lastName = data_root.getAttribute('data-lastname');
-    var email = data_root.getAttribute('data-email');
+    var user = data_root.getAttribute('data-name');
+
+    var firstName = '';
+    var lastName = '';
+    var email = '';
+    var dataObj = '';
+
+
+    if(user != '') {
+      dataObj = JSON.parse(user);
+    }
+
+    if(dataObj != '') {
+      firstName = dataObj.firstName;
+      lastName = dataObj.lastName;
+      email = dataObj.email;
+    }
 
     super(props);
     this.state = {
@@ -38,10 +52,12 @@ class Settings extends React.Component {
 
   updateSettings() {
     if(this.state.input.email == '' || this.state.input.firstName == '' || this.state.input.lastName == '') {
-      this.setState({toastStyle: 'error'}, toast('All fields must not be empty.'));
+      this.setState({toastStyle: 'error'});
+      toast('All fields must not be empty.');
     } else {
       this.props.dispatch(update_profile(this.state.input.email, this.state.input.firstName, this.state.input.lastName));
-      this.setState({toastStyle: 'success'}, toast('Profile successfully updated!'));
+      this.setState({toastStyle: 'success'});
+      toast('Profile successfully updated!')
     }
   }
 
@@ -100,9 +116,11 @@ class Settings extends React.Component {
               <input type="email" name="email" value={this.state.input.email} onChange={this.handleChange.bind(this, 'email')} className="input-text" placeholder="Email" />
             </div>
             <div className="profile-form">
-              <label>Password</label>
-              <input type="password" ref={node => {this.password = node;}} className="input-text password" placeholder="Password" />
-              <Link to="/changepassword" className="sub-link">Change Password</Link>
+              <form>
+                <label>Password</label>
+                <input type="password" className="input-text password" placeholder="Password" autoComplete="off" />
+                <Link to="/changepassword" className="sub-link">Change Password</Link>
+              </form>
             </div>
           </div>
           <input type="button" name="save" value="SAVE CHANGES"  onClick={this.updateSettings} className="button"/>

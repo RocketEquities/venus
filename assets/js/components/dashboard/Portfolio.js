@@ -1,5 +1,6 @@
 import React from 'react';
 import Profile from '../partial/Profile.js';
+import TableHistory from '../partial/TableHistory.js';
 import LineChart from '../partial/LineChart.js';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -117,7 +118,7 @@ class Portfolio extends React.Component {
 
     if(investmentLinks[0] != undefined) {
       inv_name = investmentLinks[0].name;
-      inv_history = investmentLinks[0].transactions.map(transaction_history => <tr key={transaction_history.id}><td>{transaction_history.amount}</td><td>{moment(transaction_history.updatedAt).format('MM-DD-YYYY')}</td></tr>);
+      inv_history = investmentLinks[0].transactions.map(transaction_history => <TableHistory key={transaction_history.id} {...transaction_history} />);
       inv_ip = investmentLinks[0].investmentPeriod;
       inv_pr = investmentLinks[0].paybackPeriod;
       inv_irr = investmentLinks[0].irr;
@@ -161,15 +162,13 @@ class Portfolio extends React.Component {
           </div>
           <div className="transaction-history">
             <h3>Transaction history</h3>
-            <table>
-              <tbody>
-                <tr>
-                  <th>AMOUNT INVESTED</th>
-                  <th>DATE INVESTED</th>
-                </tr>
+              <div className="tbl-history">
+                <div className="tr">
+                  <div className="th">AMOUNT INVESTED</div>
+                  <div className="th">DATE INVESTED</div>
+                </div>
                 {inv_history}
-              </tbody>
-            </table>
+              </div>
           </div>
         </div>
         <div className={showEmpty}>

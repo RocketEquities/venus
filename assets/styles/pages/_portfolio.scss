@@ -139,6 +139,38 @@
 			text-transform: uppercase;
 		}
 
+		.tbl-history {
+			width: 100%;
+	    text-align: center;
+	    margin-top: 20px;
+
+	    .tr {
+
+	    	.th {
+	    		width: 45%;
+	    		display: inline-block;
+
+	    		color: $gray-table;
+		    	font-family: $input-font;
+		    	font-size: 12px;
+		    	line-height: 15px;
+		    	padding: 12px 5px;
+		    	border-top: 1px solid rgba(224, 224, 224, 0.52);
+		    	border-bottom: 1px solid rgba(224, 224, 224, 0.52);
+	    	}
+
+	    	.td {
+	    		width: 45%;
+	    		display: inline-block;
+		    	padding: 12px 5px;
+	    	}
+	    }
+
+    	.tr:nth-child(even){
+			  background-color: $gray-comp;
+			}
+		}
+
 		table {
 			width: 100%;
 	    text-align: center;

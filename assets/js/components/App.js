@@ -17,9 +17,18 @@ import NotFound from './partial/NotFound.js';
 const App = () => {
 
 	var data_root = document.getElementById('root');
-  var username = data_root.getAttribute('data-name');
+  var user = data_root.getAttribute('data-name');
 
-  if(username == '' && location.pathname != '/login') {
+  var dataObj = '';
+
+
+  
+
+  if(user != '') {
+    dataObj = JSON.parse(user);
+  }
+
+  if(Object.keys(dataObj).length === 0 && location.pathname != '/login') {
   	return (
 		  <Redirect to='/login'/>
 		)

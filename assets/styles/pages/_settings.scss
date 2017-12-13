@@ -63,11 +63,12 @@
 		    line-height: 24px;
 
 		    .photo {
-		    	background: url(http://via.placeholder.com/500?text=imageX) no-repeat center center; 
+		    	background: url(#{$img-dir}default-user.png) no-repeat top center; 
 					-webkit-background-size: contain;
 				  -moz-background-size: contain;
 				  -o-background-size: contain;
 				  background-size: contain;
+				  border: 2px solid #f1f1f1;
 
 				  height: 200px;
 			    width: 200px;
