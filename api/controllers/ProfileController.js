@@ -30,8 +30,9 @@ function update(req, res) {
     if (err) {
       return res.apiError(err);
     }
-    req.login(user, (err) => {
-      (err) ? res.apiError(err) : res.apiSuccess({profile: user});
+    const profile = _.isArray(user) ? _.first(user) : user;
+    req.login(profile, (err) => {
+      (err) ? res.apiError(err) : res.apiSuccess({profile: profile});
     });
   });
 }
