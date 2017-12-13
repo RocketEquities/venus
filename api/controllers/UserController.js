@@ -38,7 +38,14 @@ function login(req, res) {
 function logout(req, res) {
   req.logout();
   req.session.destroy();
-  res.apiSuccess({redirectUri: "/"});
+  res.format({
+    html: () => {
+      res.redirect("/");
+    },
+    json: () => {
+      res.apiSuccess({redirectUri: "/"});
+    }
+  });
 }
 
 //------------------------------------------------------------------------------

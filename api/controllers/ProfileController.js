@@ -30,7 +30,9 @@ function update(req, res) {
     if (err) {
       return res.apiError(err);
     }
-    res.apiSuccess({profile: user});
+    req.login(user, (err) => {
+      (err) ? res.apiError(err) : res.apiSuccess({profile: user});
+    });
   });
 }
 

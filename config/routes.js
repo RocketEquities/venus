@@ -37,6 +37,7 @@ module.exports.routes = {
 
   "POST   /login"   : "User.login",
   "POST   /logout"  : "User.logout",
+  "GET    /logout"  : "User.logout",
 
   //----------------------------------------------------------------------------
 
