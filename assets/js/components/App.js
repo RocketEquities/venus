@@ -30,15 +30,17 @@ const App = () => {
 
   if(Object.keys(dataObj).length === 0 && location.pathname != '/login') {
   	return (
-		  <Redirect to='/login'/>
+  		<main>
+		    <Switch>
+				  <Redirect to='/login'/>
+		    </Switch>
+		  </main>
 		)
   } else {
   	return (
 			<main>
 		    <Switch>
 		    	<AccountLayout exact path="/login" component={Login} />
-		    	<AccountLayout exact path="/register" component={New} />
-		    	<AccountLayout exact path="/forgot" component={Reset} />
 		      <DashboardLayout exact path="/portfolio" component={Portfolio} />
 		      <DashboardLayout exact path="/portfolio/:id" component={Portfolio} />
 		      <Redirect exact from='/' to='/portfolio'/>

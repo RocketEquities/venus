@@ -69,7 +69,6 @@ class InvestmentDetail extends React.Component {
     }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps.inquiry_fulfilled, nextProps.inquiry_success);
 
     if(nextProps.inquiry_fulfilled) {
       if(nextProps.inquiry_success) {

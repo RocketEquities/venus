@@ -56,7 +56,7 @@ class Navigation extends React.Component {
 		        <div className="wide">
 		          <NavLink activeClassName="selected" to="/portfolio" >My Portfolio</NavLink>
 		          <NavLink activeClassName="selected" to="/businesses">Investments</NavLink>
-		          <a href="/login" onClick={this.logout.bind(this)}>Logout</a>
+		          <a href="/logout" onClick={this.logout.bind(this)}>Logout</a>
 		        </div>
 		      </div>
 		      <div className="nav-narrow">
@@ -64,7 +64,7 @@ class Navigation extends React.Component {
 		        <div className="hamburger-link">
 		          <NavLink to="/portfolio" activeClassName="selected" onClick={this.navToggleLink}>My Portfolio</NavLink>
 		          <NavLink to="/businesses" activeClassName="selected" onClick={this.navToggleLink}>Investments</NavLink>
-		          <a href="/login" onClick={this.logout.bind(this)}>Logout</a>
+		          <a href="/logout" onClick={this.logout.bind(this)}>Logout</a>
 		        </div>
 		      </div>
 		    </div>
