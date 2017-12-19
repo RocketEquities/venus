@@ -86,7 +86,7 @@ function update(req, res) {
     if (err) {
       return res.apiError(err);
     }
-    res.apiSuccess({user: user});
+    res.apiSuccess({user: _.first(user)});
   });
 }
 
