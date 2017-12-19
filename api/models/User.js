@@ -104,7 +104,6 @@ module.exports = {
     };
 
     User.update(where, attrs).exec((err, user) => {
-      console.log(err, user);
       if (err) {
         sails.log.error("User.updatePassword:", err);
         return done(Exception.UnknownError());
