@@ -89,6 +89,34 @@ module.exports = {
   },
 
   //----------------------------------------------------------------------------
+
+  updatePassword: function(id, values, done) {
+    const newPassword = _.get(values, "newPassword") || "";
+    const oldPassword = _.get(values, "oldPassword") || "";
+    const hashedPassword = sails.helpers.Util.toHash(oldPassword);
+
+    const where = {
+      id: id,
+      password: hashedPassword
+    };
+    const attrs = {
+      password: newPassword
+    };
+
+    User.update(where, attrs).exec((err, user) => {
+      console.log(err, user);
+      if (err) {
+        sails.log.error("User.updatePassword:", err);
+        return done(Exception.UnknownError());
+      }
+      if (_.isEmpty(user)) {
+        return done(Exception.Unauthorized("Password mismatch."));
+      }
+      done();
+    });
+  },
+
+  //----------------------------------------------------------------------------
   //-- lifecycle callback
 
   afterValidate: function(values, next) {

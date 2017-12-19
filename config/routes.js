@@ -41,9 +41,10 @@ module.exports.routes = {
 
   //----------------------------------------------------------------------------
 
-  "GET    /profile" : "Profile.show",
-  "PUT    /profile" : "Profile.update",
-  "PATCH  /profile" : "Profile.update",
+  "GET    /profile"          : "Profile.show",
+  "PUT    /profile"          : "Profile.update",
+  "PATCH  /profile"          : "Profile.update",
+  "PATCH  /profile/password" : "Profile.updatePassword",
 
   //----------------------------------------------------------------------------
 

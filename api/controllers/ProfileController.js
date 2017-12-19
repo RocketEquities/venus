@@ -5,7 +5,8 @@
 
 module.exports = {
   show: show,
-  update: update
+  update: update,
+  updatePassword: updatePassword
 };
 
 //==============================================================================
@@ -34,6 +35,24 @@ function update(req, res) {
     req.login(profile, (err) => {
       (err) ? res.apiError(err) : res.apiSuccess({profile: profile});
     });
+  });
+}
+
+//------------------------------------------------------------------------------
+
+function updatePassword(req, res) {
+  let params = {
+    oldPassword: req.param("oldPassword"),
+    newPassword: req.param("newPassword")
+  };
+  let id = _.get(req.user, "id") || 0;
+  let attrs = _.omitBy(params, _.isNil);
+
+  User.updatePassword(id, attrs, (err) => {
+    if (err) {
+      return res.apiError(err);
+    }
+    res.apiSuccess();
   });
 }
 
