@@ -7,7 +7,8 @@ export default function reducer(state={
     portfolio_widget: {},
     error: {},
     inquiry_success: false,
-    inquiry_fulfilled: false
+    inquiry_fulfilled: false,
+    changePw: {}
   }, action) {
 
     switch (action.type) {
@@ -46,6 +47,18 @@ export default function reducer(state={
 
       case "GET_PORTFOLIO_REJECTED": {
         return {...state, fetching: false, error: action.payload}
+      }
+
+      case "UPDATE_PW": {
+        return {...state, fetching: true}
+      }
+
+      case "UPDATE_PW_FULFILLED": {
+        return {...state, fetching: false, changePw: action.payload}
+      }
+
+      case "UPDATE_PW_REJECTED": {
+        return {...state, fetching: false, changePw: action.payload}
       }
 
       case "SEND_INQUIRY": {

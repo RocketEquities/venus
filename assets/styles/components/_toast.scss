@@ -272,6 +272,38 @@
 
 }
 
+
+.toastify-content--error {
+  background-color: #F16262;
+  color: #B22E2E;
+  font-family: $bold-secondary;
+  font-size: 14px;
+  line-height: 17px;
+
+  .toastify__close {
+    color: #B22E2E !important;
+    font-size: 18px !important;
+    line-height: 18px !important;
+    opacity: 1 !important;
+  }
+}
+
+
+.toastify-content--success {
+  background-color: #7CCF6C;
+  color: #3B852C;
+  font-family: $bold-secondary;
+  font-size: 14px;
+  line-height: 17px;
+
+  .toastify__close {
+    color: #3B852C !important;
+    font-size: 18px !important;
+    line-height: 18px !important;
+    opacity: 1 !important;
+  }
+}
+
 .warning {
   background-color: #F1EBC6;
   color: #AAA37B;

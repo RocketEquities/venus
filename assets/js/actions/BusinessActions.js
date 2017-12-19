@@ -75,3 +75,19 @@ export function update_profile(email, firstName, lastName) {
       })
   }
 }
+
+export function update_pw(currentpw, newpw) {
+  return function(dispatch) {
+    dispatch({type: "UPDATE_PW"});
+
+    var data = {"oldPassword" : currentpw, "newPassword" : newpw}
+
+    axios.patch("/profile/password", data)
+      .then((response) => {
+        dispatch({type: "UPDATE_PW_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "UPDATE_PW_REJECTED", payload: err})
+      })
+  }
+}

@@ -10,11 +10,16 @@
     outline: none;
     padding: 2.5%;
 
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 
     max-width: 480px;
+    min-width: 400px;
 
     .fa-times {
         cursor: pointer;
@@ -102,4 +107,16 @@
     bottom: 0px;
     background-color: rgba(102, 102, 102, 0.8);
     z-index: 2;
+}
+
+
+@media screen and (max-width: 39.9375em) {
+    .modal {
+        min-width: 100% !important;
+        width: 100% !important;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        padding: 8%;
+    }
 }
