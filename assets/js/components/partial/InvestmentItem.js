@@ -1,5 +1,6 @@
 import React from 'react';
 import { history, withRouter } from 'react-router-dom';
+import YouTube from 'react-youtube';
 
 class InvestmentItem extends React.Component {
 
@@ -15,8 +16,26 @@ class InvestmentItem extends React.Component {
     }
 
     render() {
+      const opts = {
+        playerVars: {
+          autoplay: 0
+        }
+      };
+
+      var displayHeader = '';
+
+      if(this.props.video != null) {
+        var VID_REGEX = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        displayHeader = <div id="item-img" className="item-img"><YouTube videoId={this.props.video.match(VID_REGEX)[1]} opts={opts} /></div>
+      }
+
+      if(this.props.video == null && this.props.image != null) {
+        displayHeader = <div id="item-img" className="item-img"><img src={this.props.image} /></div>
+      }
+
         return (
             <div className="invest-item">
+              {displayHeader}
               <div className="item-details">
                 <h3>{this.props.name}</h3>
                 <div className="separator"></div>

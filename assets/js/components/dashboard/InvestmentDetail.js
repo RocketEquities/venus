@@ -5,6 +5,7 @@ import BarChart from '../partial/BarChart.js';
 import Modal from 'react-modal';
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
+import YouTube from 'react-youtube';
 
 import { business_detail, businesses, send_inquiry } from '../../actions/BusinessActions.js';
 
@@ -140,6 +141,7 @@ class InvestmentDetail extends React.Component {
     var businessip = '';
     var businesspp = '';
     var businesscapital = '';
+    var displayVideo = '';
 
     if(this.props.business_response != undefined) {
       businessdetails = this.props.business_response.filter(function( obj ) {
@@ -153,12 +155,31 @@ class InvestmentDetail extends React.Component {
       businessirr = businessdetails[0].irr;
       businessip = businessdetails[0].investmentPeriod;
       businesspp = businessdetails[0].paybackPeriod;
+
+      if(businessdetails[0].video != null) {
+        var VID_REGEX = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        displayVideo = <YouTube videoId={businessdetails[0].video.match(VID_REGEX)[1]} opts={opts} />
+      } else if(businessdetails[0].image != null) {
+        document.getElementById('item-img').style.backgroundImage = "url('"+ businessdetails[0].image +"')";
+      } else {
+        document.getElementById('item-img').style.display = "none";
+      }
     }
+
+
+    const opts = {
+      playerVars: {
+        autoplay: 0
+      }
+    };
 
 	  return (
 	    <div className="investment-detail">
         <div className="i-title">
-          
+            <div id="item-img" className="item-img">
+              {displayVideo}
+            </div>
+
               <div className="item-details">
                 <h3>{businessname}</h3>
                 <div className="separator"></div>
