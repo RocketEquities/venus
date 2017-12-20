@@ -47,7 +47,7 @@ class Settings extends React.Component {
     this.state = {
       input: {firstName: firstName, lastName: lastName, email: email, currpw: '', newpw: '', confirmpw: ''},
       toastStyle: '',
-      modalIsOpen: false,
+      modalIsOpen: false
 
     }
 
@@ -110,6 +110,14 @@ class Settings extends React.Component {
 
 
     this.setState({input: input});
+
+    if(property == 'confirmpw') {
+      if(document.getElementById('newpw').value != document.getElementById('confirmpw').value) {
+        document.getElementById('confirmpw').style.borderColor = "#DA251F";
+      } else {
+        document.getElementById('confirmpw').style.borderColor = "#DBDBDB";
+      }
+    }
   }
 
   render() {
@@ -155,14 +163,12 @@ class Settings extends React.Component {
             <h4 className="mt">Current Password</h4>
             <input type="password" name="currpw" value={this.state.input.currpw} onChange={this.handleChange.bind(this, 'currpw')} className="input-text" placeholder="" />
             <h4 className="mt">New Password</h4>
-            <input type="password" name="newpw" value={this.state.input.newpw} onChange={this.handleChange.bind(this, 'newpw')} className="input-text" placeholder="" />
+            <input type="password" id="newpw" name="newpw" value={this.state.input.newpw} onChange={this.handleChange.bind(this, 'newpw')} className="input-text" placeholder="" />
             <h4 className="mt">Confirm Password</h4>
-            <input type="password" name="confirmpw" value={this.state.input.confirmpw} onChange={this.handleChange.bind(this, 'confirmpw')} className="input-text" placeholder="" />
+            <input type="password" id="confirmpw" name="confirmpw" value={this.state.input.confirmpw} onChange={this.handleChange.bind(this, 'confirmpw')} className="input-text" placeholder="" />
             <br/>
             <input type="button" name="changepw" value="CHANGE PASSWORD" onClick={this.changePw.bind(this)} className="button"/>
           </Modal>
-
-
 
 
 
@@ -172,18 +178,18 @@ class Settings extends React.Component {
               <div className="photo"></div>
               <Link to="/changephoto" className="sub-link">Change Photo</Link>
               Max file size 5MB.
+              <br/><br/>
+              <Link to="" className="sub-link" onClick={this.openModal}>Change Password</Link>
             </div>
             <div className="profile-form">
               <label>First Name</label>
               <input type="text" name="firstName" value={this.state.input.firstName} onChange={this.handleChange.bind(this, 'firstName')} className="input-text" placeholder="First Name" />
               <label>Last Name</label>
               <input type="text" name="lastName" value={this.state.input.lastName} onChange={this.handleChange.bind(this, 'lastName')} className="input-text" placeholder="Last Name" />
-              <label>Email</label>
-              <input type="email" name="email" value={this.state.input.email} onChange={this.handleChange.bind(this, 'email')} className="input-text" placeholder="Email" />
             </div>
             <div className="profile-form">
-              <br/><br/><br/>
-              <Link to="" className="sub-link" onClick={this.openModal}>Change Password</Link>
+              <label>Email</label>
+              <input type="email" name="email" value={this.state.input.email} onChange={this.handleChange.bind(this, 'email')} className="input-text" placeholder="Email" />
             </div>
           </div>
           <input type="button" name="save" value="SAVE CHANGES"  onClick={this.updateSettings} className="button"/>

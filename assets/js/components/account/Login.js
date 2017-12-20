@@ -97,10 +97,10 @@ class Login extends React.Component {
 			<div className="password-input">
 				<input type={this.state.type} name="password" value={this.state.input.password} onChange={this.handleChange.bind(this, 'password')} className="input-text" placeholder="Password" />
 				<span className="password-show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
-				<Link to="/forgot" className="sub-link">Forgot password?</Link>
+				
 			</div>
 			<input type="button" name="login" value="LOGIN" className="button" onClick={this.login.bind(this)}/>
-			<span>Don’t have an account? <Link to="/register" className="link">Sign up</Link></span>
+			
 			</div>
 	  );
   }
