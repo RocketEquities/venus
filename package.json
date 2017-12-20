@@ -11,6 +11,7 @@
     "connect-redis": "^3.1.0",
     "crypto-js": "^3.1.9-1",
     "ejs": "2.3.4",
+    "glamor": "^2.20.40",
     "grunt": "0.4.5",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-coffee": "0.13.0",
