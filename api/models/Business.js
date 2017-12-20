@@ -37,6 +37,16 @@ module.exports = {
       columnName: "irr",
       type: "float"
     },
+    image: {
+      columnName: "image",
+      type: "string",
+      maxLength: 256
+    },
+    video: {
+      columnName: "video",
+      type: "string",
+      maxLength: 256
+    },
     createdAt: {
       columnName: "created_at",
       type: "datetime"

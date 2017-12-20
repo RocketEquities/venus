@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS businesses (
     investment_period INT(3),
     payback_period INT(3),
     irr DECIMAL(5,2),
+    image VARCHAR(256),
+    video VARCHAR(256),
     created_at DATETIME,
     updated_at DATETIME
 ) ENGINE = InnoDB;
