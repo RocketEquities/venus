@@ -23,6 +23,8 @@
 			font-size: 14px;
 			line-height: 17px;
 			text-decoration: none;
+			outline: 0;
+
 		}
 
 		.sub-link:hover {
@@ -80,6 +82,7 @@
 		    .sub-link {
 		    	display: block;
     			margin-top: 8px;
+    			outline: 0;
 		    }
 			}
 

@@ -193,7 +193,7 @@ class Settings extends React.Component {
             </div>
           </div>
           <input type="button" name="save" value="SAVE CHANGES"  onClick={this.updateSettings} className="button"/>
-          <input type="button" name="cancel" value="CANCEL" className="button secondary"/>
+          
         </div>
       </div>
     );
