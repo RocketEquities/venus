@@ -61,6 +61,12 @@ module.exports.routes = {
   "POST   /inquiries"     : "Inquiry.create",
 
   //----------------------------------------------------------------------------
+  //-- health check
+
+  "GET    /ycbb/ruok"     : { response: "ok" },
+
+
+  //----------------------------------------------------------------------------
   //-- temporary routes
 
   "POST   /users"     : "User.create",
