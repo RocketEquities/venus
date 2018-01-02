@@ -32,8 +32,8 @@ function headers(sails) {
     res.set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' " + assets + "; img-src * data:");
 
     //-- Force all request to not generate cache (not applicable to assets)
-    res.set("Cache-Control", "no-cache, no-store, must-revalidate, private");
-    res.set("Pragma", "no-cache");
+    //res.set("Cache-Control", "no-cache, no-store, must-revalidate, private");
+    //res.set("Pragma", "no-cache");
 
     next();
   };
