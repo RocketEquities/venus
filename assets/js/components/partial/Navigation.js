@@ -17,12 +17,12 @@ class Navigation extends React.Component {
   }
 
   resfreshPage() {
-    // history.go(0);
+   
   }
 
   logout() {
     this.props.dispatch(logout());
-    // history.go(0);
+    
   }
 
   componentWillReceiveProps(nextProps){

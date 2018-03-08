@@ -34,7 +34,7 @@ class Profile extends React.Component {
     if(this.props.portfolio_widget.investments != undefined) {
       investmentLinks = this.props.portfolio_widget.investments.map(i_links =>
                         <li key={i_links.id}>
-                          <NavLink exact to={'/portfolio/' + i_links.id} id={i_links.id} onClick={this.resfreshPage.bind(this, i_links.id)} activeClassName="active-link">
+                          <NavLink exact to={'/portfolio/' + i_links.id} id={i_links.id}  activeClassName="active-link">
                             <i className="fa fa-chevron-right" aria-hidden="true"></i>
                             <div className="investment-list">
                               <h4>{i_links.name}</h4>

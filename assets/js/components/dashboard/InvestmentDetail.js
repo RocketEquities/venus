@@ -55,19 +55,49 @@ class InvestmentDetail extends React.Component {
   }
 
   handleChange(property, event) {
-      const input = {...this.state.input};
-      const re = /^[0-9\b]+$/;
+    const input = {...this.state.input};
+    const re = /^[0-9\b]+$/;
 
-      if (property == "amt") {
-        if (event.target.value == '' || re.test(event.target.value)) {
-          input[property] = event.target.value;
-        }
-      } else {
+    if (property == "amt") {
+      if (event.target.value == '' || re.test(event.target.value)) {
         input[property] = event.target.value;
       }
-
-      this.setState({input: input});
+    } else {
+      input[property] = event.target.value;
     }
+
+    this.setState({input: input});
+  }
+
+
+  drawChart() {
+    var chartAmount = this.props.business_detail_response.projections.map(a => Math.floor(a.expectedProfit));
+    var chartLabel = this.props.business_detail_response.projections.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
+
+    return (
+      {
+        labels: chartLabel,
+        datasets: [
+        {
+          data: chartAmount,
+
+          backgroundColor: [
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2',
+            '#4990E2'
+          ]
+        }
+        ]
+      }
+    )
+  }
 
   componentWillReceiveProps(nextProps){
 
@@ -80,35 +110,6 @@ class InvestmentDetail extends React.Component {
         toast('Something went wrong. Please try again.');
       }
     } 
-
-    if(nextProps.chart_ready) {
-      var chartAmount = nextProps.business_detail_response.projections.map(a => Math.floor(a.expectedProfit));
-      var chartLabel = nextProps.business_detail_response.projections.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
-
-      this.setState({
-        chartData: {
-          labels: chartLabel,
-          datasets: [
-          {
-            data: chartAmount,
-
-            backgroundColor: [
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2',
-              '#4990E2'
-            ]
-          }
-          ]
-        }
-      });
-    }
   }
 
   openModal() {
@@ -130,7 +131,7 @@ class InvestmentDetail extends React.Component {
   }
 
   render() {
-    const mygraph = this.props.chart_ready ? <BarChart chartData={this.state.chartData} height='300' redraw /> : "";
+    const mygraph = this.props.chart_ready ? <BarChart chartData={this.drawChart.bind(this)} height='300' redraw /> : "";
 
     var businessdetails = '';
     var currentbusiness = this.props.match.params.id;

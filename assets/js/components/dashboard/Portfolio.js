@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Profile from '../partial/Profile.js';
 import TableHistory from '../partial/TableHistory.js';
 import LineChart from '../partial/LineChart.js';
@@ -22,43 +23,41 @@ class Portfolio extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillReceiveProps(nextProps){
+    var currentinvestement = this.props.match.params.id;
 
+    if(currentinvestement == undefined && nextProps.portfolio_widget.investments != undefined) {
+      if(nextProps.portfolio_widget.investments.length == 0){
+        //
+      } else {
+        var portfolioid = "/portfolio/" + nextProps.portfolio_widget.investments[0].id;
+         this.props.history.push(portfolioid);
+      }
+    }
   }
 
   reloadChart() {
+    var investmentLinks = '';
+    var currentinvestement = this.props.match.params.id;
+
+    if(this.props.portfolio_widget.investments != undefined) {
+      investmentLinks = this.props.portfolio_widget.investments.filter(function( obj ) {
+        return obj.id == currentinvestement;
+      });
+    }
+
+    var actualProfit = '';
+    var expectedProfit = '';
+    var chartLabel = '';
+
+    if(investmentLinks[0] != undefined) {
+      actualProfit = investmentLinks[0].profits.map(a => a.actualAmount);
+      expectedProfit = investmentLinks[0].profits.map(a => a.expectedAmount);
+      chartLabel = investmentLinks[0].profits.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
+    }
+
     return (
-      this.state.chartData
-    )
-
-    this.forceUpdate();
-  }
-
-
-  componentWillReceiveProps(nextProps){
-
-    if(nextProps.portfolio_chart_ready) {
-      var investmentLinks = '';
-      var currentinvestement = this.props.match.params.id;
-
-      if(nextProps.portfolio_widget.investments != undefined) {
-        investmentLinks = nextProps.portfolio_widget.investments.filter(function( obj ) {
-          return obj.id == currentinvestement;
-        });
-      }
-
-      var actualProfit = '';
-      var expectedProfit = '';
-      var chartLabel = '';
-
-      if(investmentLinks[0] != undefined) {
-        actualProfit = investmentLinks[0].profits.map(a => a.actualAmount);
-        expectedProfit = investmentLinks[0].profits.map(a => a.expectedAmount);
-        chartLabel = investmentLinks[0].profits.map(a => [moment(a.expectedAt).format('MMM').toUpperCase(), moment(a.expectedAt).format('YYYY').toUpperCase()]);
-      }
-
-      this.setState({
-      chartData: {
+      {
         labels: chartLabel,
         datasets: [
           {
@@ -82,8 +81,7 @@ class Portfolio extends React.Component {
           }
         ]
       }
-    }, this.forceUpdate());
-    }
+    )
   }
 
   render() {
@@ -102,11 +100,6 @@ class Portfolio extends React.Component {
       if(this.props.portfolio_widget.investments.length == 0){
         showDetail = 'hide';
         showEmpty = 'transaction-history portfolio-empty';
-      } else {
-        var portfolioid = "/portfolio/" + this.props.portfolio_widget.investments[0].id;
-        // this.props.history.push(portfolioid);
-        // history.go(0);
-         window.location.href = portfolioid;
       }
     }
 
@@ -125,7 +118,7 @@ class Portfolio extends React.Component {
     }
 
 
-    const portfoliograph = (this.props.portfolio_chart_ready) ? <LineChart chartData={this.reloadChart.bind(this)} height="300"/> : "";
+    var portfoliograph = (this.props.portfolio_chart_ready) ? <LineChart chartData={this.reloadChart.bind(this)} height="300"/> : "";
 
 	  return (
 	    <div className="portfolio">
@@ -179,4 +172,4 @@ class Portfolio extends React.Component {
   }
 }
 
-export default Portfolio;
+export default withRouter(Portfolio);

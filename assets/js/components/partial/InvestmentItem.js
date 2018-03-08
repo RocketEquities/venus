@@ -11,8 +11,9 @@ class InvestmentItem extends React.Component {
     getInvestmentDetails(e){
         e.preventDefault();
 
-        window.location.href = location.pathname + '/' + this.props.id;
-        // window.history.go(0);
+        // window.location.href = location.pathname + '/' + this.props.id;
+        
+        this.props.history.push(location.pathname + '/' + this.props.id);
     }
 
     render() {
